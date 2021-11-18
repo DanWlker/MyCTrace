@@ -22,4 +22,11 @@
         android:name="com.example.myctrace.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/check_in"
+        android:name="com.example.myctrace.ui.checkin.CheckInFragment"
+        android:label="Check In"
+        tools:layout="@layout/check_in_fragment" />
+
 </navigation>

@@ -18,6 +18,10 @@
             android:id="@+id/navigation_notifications"
             android:icon="@drawable/ic_notifications_black_24dp"
             android:title="@string/title_notifications" />
+        <item
+            android:id="@+id/check_in"
+            android:icon="@drawable/ic_notifications_black_24dp"
+            android:title="Check In" />
     </group>
 
 </menu>
