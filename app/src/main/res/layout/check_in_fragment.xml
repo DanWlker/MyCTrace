@@ -1,86 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="400dp"
-    android:layout_gravity="center_horizontal"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.checkin.CheckInFragment"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    >
+    tools:context=".ui.checkin.CheckIn"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingVertical="30dp">
-
-        <EditText
-            android:id="@+id/editTextLocationName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Search Location"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:drawableEnd="@android:drawable/ic_menu_mylocation"
-            android:drawableTint="@color/black"/>
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="10dp"></Space>
-
-        <EditText
-            android:id="@+id/editTextDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Date"
-            android:inputType="date"
-            android:minHeight="48dp"
-            android:drawableEnd="@android:drawable/ic_menu_my_calendar"
-            android:drawableTint="@color/black"/>
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="10dp"></Space>
-
+        android:outlineAmbientShadowColor="@color/black"
+        app:cardElevation="20dp"
+        android:id="@+id/top_card"
+        android:layout_weight="0">
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingVertical="40dp">
+            <LinearLayout
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
-                android:text="Sort by: "
-                android:textSize="18sp"></TextView>
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="0dp"></Space>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fully Vaccinated"
+                    android:textSize="23sp">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Certificate issued: 24 September 2021">
+                </TextView>
+                <ProgressBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="100">
 
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
+                </ProgressBar>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
-                android:text="Latest"
-                app:icon="@android:drawable/ic_menu_more"
-                app:iconSize="18dp"
-                app:iconGravity="end"
-                app:iconTint="@color/white"
-                android:textSize="15sp"></com.google.android.material.button.MaterialButton>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="High Risk"
+                    android:textSize="23sp">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Health Risk Assessment: 17 September 2021">
+                </TextView>
+                <ProgressBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="50">
 
+                </ProgressBar>
+            </LinearLayout>
         </LinearLayout>
 
-    </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recent Check Ins"
+        android:textSize="25dp"
+        android:layout_margin="15dp"
+        android:layout_weight="0"/>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/teal_700"
                 app:cardCornerRadius="20dp"
@@ -88,10 +99,9 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="110dp"></Space>
-
             </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/teal_700"
                 app:cardCornerRadius="20dp"
@@ -99,10 +109,9 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="110dp"></Space>
-
             </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/teal_700"
                 app:cardCornerRadius="20dp"
@@ -110,10 +119,9 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="110dp"></Space>
-
             </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/teal_700"
                 app:cardCornerRadius="20dp"
@@ -121,47 +129,45 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="110dp"></Space>
-
             </com.google.android.material.card.MaterialCardView>
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/teal_700"
-                app:cardCornerRadius="20dp"
-                android:layout_marginVertical="10dp">
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="110dp"></Space>
 
-            </com.google.android.material.card.MaterialCardView>
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/teal_700"
-                app:cardCornerRadius="20dp"
-                android:layout_marginVertical="10dp">
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="110dp"></Space>
-
-            </com.google.android.material.card.MaterialCardView>
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/teal_700"
-                app:cardCornerRadius="20dp"
-                android:layout_marginVertical="10dp">
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="110dp"></Space>
-
-            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
     </ScrollView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
+        android:text="View More >>"
+        android:layout_margin="10dp"
+        android:layout_weight="0"
+        android:clickable="true"
+        android:id="@+id/view_more"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_weight="0"
+        android:layout_marginVertical="10dp">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Self Check In"
+            android:id="@+id/self_check_in">
+        </Button>
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="match_parent"></Space>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Group Check In">
+        </Button>
 
-
+    </LinearLayout>
 
 </LinearLayout>

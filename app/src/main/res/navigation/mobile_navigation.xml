@@ -24,8 +24,14 @@
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
+        android:id="@+id/check_in_history"
+        android:name="com.example.myctrace.ui.checkinhistory.CheckInHistoryFragment"
+        android:label="Check In History"
+        tools:layout="@layout/check_in_history_fragment" />
+
+    <fragment
         android:id="@+id/check_in"
-        android:name="com.example.myctrace.ui.checkin.CheckInFragment"
+        android:name="com.example.myctrace.ui.checkin.CheckIn"
         android:label="Check In"
         tools:layout="@layout/check_in_fragment" />
 
