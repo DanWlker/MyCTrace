@@ -26,8 +26,4 @@
         android:background="?android:attr/windowBackground"
         app:menu="@menu/nav_menu"
         android:layout_weight="0"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </LinearLayout>
