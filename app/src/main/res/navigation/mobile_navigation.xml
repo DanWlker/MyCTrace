@@ -35,4 +35,16 @@
         android:label="Check In"
         tools:layout="@layout/check_in_fragment" />
 
+    <fragment
+        android:id="@+id/scan_qr"
+        android:name="com.example.myctrace.ui.scanqr.ScanQr"
+        android:label="ScanQr"
+        tools:layout="@layout/scan_qr_fragment" />
+
+    <fragment
+        android:id="@+id/search_test_location"
+        android:name="com.example.myctrace.ui.searchtestlocation.SearchTestLocation"
+        android:label="Search Test Location"
+        tools:layout="@layout/search_test_location_fragment" />
+
 </navigation>
