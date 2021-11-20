@@ -1,9 +1,12 @@
 package com.example.myctrace;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
+import com.example.myctrace.ui.login.Login;
+import com.example.myctrace.ui.register.Register;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(true) { //if no login
+            Intent myIntent = new Intent(this, Register.class);
+            startActivity(myIntent); //TODO:change to start activity without history
+        }
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -53,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.appBarMain.contentMain.navViewBottom, navController);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(binding.navViewSide, navController);
+
     }
 
     @Override
