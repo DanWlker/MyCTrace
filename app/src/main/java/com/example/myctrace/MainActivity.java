@@ -37,13 +37,13 @@ public class MainActivity extends AppCompatActivity {
         //TODO:Update any new views here and add icons if necessary
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home,
-                R.id.navigation_dashboard,
+                R.id.navigation_toknow,
                 R.id.navigation_notifications,
                 R.id.check_in)
                 .build();
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home,
-                R.id.navigation_dashboard,
+                R.id.navigation_toknow,
                 R.id.navigation_notifications,
                 R.id.check_in)
                 .setOpenableLayout(drawer)

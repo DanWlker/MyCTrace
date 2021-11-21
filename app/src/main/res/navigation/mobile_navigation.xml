@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.myctrace.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_toknow"
+        android:name="com.example.myctrace.ui.toknow.ToknowFragment"
+        android:label="To Know"
+        tools:layout="@layout/toknow_fragment" />
 
     <fragment
         android:id="@+id/navigation_notifications"
