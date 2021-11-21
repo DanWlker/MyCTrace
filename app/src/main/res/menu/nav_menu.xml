@@ -10,9 +10,9 @@
             android:title="@string/title_home" />
 
         <item
-            android:id="@+id/navigation_dashboard"
+            android:id="@+id/navigation_toknow"
             android:icon="@drawable/ic_dashboard_black_24dp"
-            android:title="@string/title_dashboard" />
+            android:title="To Know" />
 
         <item
             android:id="@+id/navigation_notifications"
