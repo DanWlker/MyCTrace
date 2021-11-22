@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +15,7 @@ import android.view.WindowInsets;
 
 import com.example.myctrace.databinding.ActivityLoginBinding;
 import com.example.myctrace.R;
+import com.example.myctrace.ui.register.Register;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -63,9 +65,21 @@ public class Login extends AppCompatActivity {
         setContentView(binding.getRoot());
     }
 
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+
+        findViewById(R.id.register_text).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Login.this, Register.class);
+                //TODO:change to start activity without letting the user able to press back button to access stack history
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
         // Trigger the initial hide() shortly after the activity has been
         // created, to briefly hint to the user that UI controls

@@ -34,6 +34,7 @@ public class CheckIn extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.check_in_fragment, container, false);
     }
 
@@ -41,7 +42,24 @@ public class CheckIn extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(CheckInViewModel.class);
+
         // TODO: Use the ViewModel
+        View view = getView();
+        TextView textViewMore = view.findViewById(R.id.view_more);
+        textViewMore.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Fragment frag = new CheckInHistoryFragment();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.nav_host_fragment_content_main, frag);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+
     }
 
 

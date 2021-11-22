@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.components.ComponentLocationCard"
     app:cardCornerRadius="15dp"
-    app:cardBackgroundColor="#EFF5FF"
+    app:cardBackgroundColor="@color/blue_secondary"
     app:contentPadding="10dp">
 
         <LinearLayout
@@ -21,14 +21,14 @@
                 android:layout_height="wrap_content"
                 android:text="Location Name"
                 android:textSize="16dp"
-                android:textColor="@color/design_default_color_primary"/>
+                android:textColor="@color/blue_primary"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12dp"
                 android:text="DD Month YYYY, HH:MM AM/PM"
-                android:textColor="@color/design_default_color_primary"/>
+                android:textColor="@color/blue_primary"/>
         </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

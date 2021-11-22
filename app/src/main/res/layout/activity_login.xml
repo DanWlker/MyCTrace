@@ -18,7 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
-            android:textSize="35dp" />
+            android:textSize="35dp"
+            android:textColor="@color/blue_primary"/>
 
         <Space
             android:layout_width="0dp"
@@ -30,7 +31,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Identification Card Number"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textColor="@color/blue_primary"/>
 
         <Space
             android:layout_width="0dp"
@@ -42,7 +44,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="@color/blue_primary" />
 
         <Space
             android:layout_width="20dp"
@@ -57,11 +60,29 @@
             android:layout_width="0dp"
             android:layout_height="10dp"/>
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Click here to Register"
-            android:textAlignment="center"/>
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Click here to "
+                android:textAlignment="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:textAlignment="center"
+                android:clickable="true"
+                android:textColor="@color/orange_primary"
+                android:id="@+id/register_text"
+                />
+
+        </LinearLayout>
+
+
 
 
     </LinearLayout>

@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         if(true) { //if no login
-            Intent myIntent = new Intent(this, ICVerification.class);
+            Intent intent = new Intent(this, Login.class);
             //TODO:change to start activity without letting the user able to press back button to access stack history
-            startActivity(myIntent);
+            startActivity(intent);
         }
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());

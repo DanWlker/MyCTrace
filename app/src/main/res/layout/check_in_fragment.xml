@@ -28,12 +28,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Fully Vaccinated"
-                    android:textSize="23sp">
+                    android:textSize="23sp"
+                    android:textColor="@color/green_primary">
                 </TextView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Certificate issued: 24 September 2021">
+                    android:text="Certificate issued: 24 September 2021"
+                    android:textColor="@color/green_primary">
                 </TextView>
                 <ProgressBar
                     android:layout_width="match_parent"
@@ -41,7 +43,8 @@
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:indeterminate="false"
                     android:max="100"
-                    android:progress="100">
+                    android:progress="100"
+                    >
 
                 </ProgressBar>
             </LinearLayout>
@@ -52,13 +55,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="High Risk"
-                    android:textSize="23sp">
+                    android:text="Low Risk"
+                    android:textSize="23sp"
+                    android:textColor="@color/green_primary">
                 </TextView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Health Risk Assessment: 17 September 2021">
+                    android:text="Health Risk Assessment: 17 September 2021"
+                    android:textColor="@color/green_primary">
+
                 </TextView>
                 <ProgressBar
                     android:layout_width="match_parent"
@@ -66,7 +72,7 @@
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:indeterminate="false"
                     android:max="100"
-                    android:progress="50">
+                    android:progress="100">
 
                 </ProgressBar>
             </LinearLayout>
@@ -86,10 +92,11 @@
         android:layout_weight="1"
         >
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal">
 
             <fragment
                 android:name="com.example.myctrace.ui.components.ComponentLocationCard"

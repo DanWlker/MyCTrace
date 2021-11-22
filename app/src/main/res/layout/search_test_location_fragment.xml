@@ -18,7 +18,8 @@
         android:minHeight="48dp"
         android:drawableEnd="@android:drawable/ic_menu_mylocation"
         android:drawableTint="@color/black"
-        android:layout_marginVertical="30dp"/>
+        android:layout_marginVertical="30dp"
+        android:textColor="@color/blue_primary"/>
 
     <ScrollView
         android:layout_width="match_parent"
