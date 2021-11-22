@@ -161,7 +161,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Group Check In"
-            app:cornerRadius="10dp">
+            app:cornerRadius="10dp"
+            android:id="@+id/btn_groupcheckin">
         </com.google.android.material.button.MaterialButton>
 
     </LinearLayout>

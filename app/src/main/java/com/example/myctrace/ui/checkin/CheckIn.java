@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.myctrace.R;
 import com.example.myctrace.databinding.FragmentDashboardBinding;
 import com.example.myctrace.ui.checkinhistory.CheckInHistoryFragment;
+import com.example.myctrace.ui.scanqr.ScanQr;
 
 import org.w3c.dom.Text;
 
@@ -45,6 +46,7 @@ public class CheckIn extends Fragment {
 
         // TODO: Use the ViewModel
         View view = getView();
+
         TextView textViewMore = view.findViewById(R.id.view_more);
         textViewMore.setOnClickListener(new View.OnClickListener()
         {
@@ -52,6 +54,19 @@ public class CheckIn extends Fragment {
             public void onClick(View v)
             {
                 Fragment frag = new CheckInHistoryFragment();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.nav_host_fragment_content_main, frag);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+
+        Button buttonGroupCheckIn = view.findViewById(R.id.btn_groupcheckin);
+        buttonGroupCheckIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment frag = new ScanQr();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.nav_host_fragment_content_main, frag);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
