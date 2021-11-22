@@ -12,7 +12,16 @@ import com.example.myctrace.R;
 
 import java.util.List;
 
-public class NewsAdapter extends RecyclerView.Adapter<ViewHolder> {
+public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView tv_title;
+
+        public ViewHolder(View itemView){
+            super(itemView);
+            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
+        }
+    }
 
     private List<NewsModel> mNews;
 
@@ -21,7 +30,7 @@ public class NewsAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public NewsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -35,11 +44,14 @@ public class NewsAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position){
         NewsModel news = mNews.get(position);
 
-        TextView textView = holder.tv_title;
+        TextView textViewTitle = holder.tv_title;
+        textViewTitle.setText(news.getTitle());
     }
 
     @Override
     public int getItemCount() {
         return mNews.size();
     }
+
+
 }

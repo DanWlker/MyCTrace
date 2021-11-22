@@ -1,5 +1,6 @@
 package com.example.myctrace.ui.todo;
 
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -13,26 +14,47 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myctrace.R;
+import com.example.myctrace.databinding.FragmentHomeBinding;
+import com.example.myctrace.databinding.TodoFragmentBinding;
+import com.example.myctrace.ui.assessment.AssessmentFragment;
+import com.example.myctrace.ui.home.HomeViewModel;
+import com.google.android.material.card.MaterialCardView;
 
 public class TodoFragment extends Fragment {
 
-    private TodoViewModel mViewModel;
+    private TodoViewModel todoViewModel;
+    private TodoFragmentBinding binding;
 
-    public static TodoFragment newInstance() {
-        return new TodoFragment();
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+
+        todoViewModel = new ViewModelProvider(this).get(TodoViewModel.class);
+        binding = TodoFragmentBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        final MaterialCardView cvRisk = binding.cvRisk;
+
+        cvRisk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment riskAssFrag = new AssessmentFragment();
+
+                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                ft.replace(R.id.nav_host_fragment_content_main, riskAssFrag);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+
+        return root;
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.todo_fragment, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(TodoViewModel.class);
-        // TODO: Use the ViewModel
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
 }
