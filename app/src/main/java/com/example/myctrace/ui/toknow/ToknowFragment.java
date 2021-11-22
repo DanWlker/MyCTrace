@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class ToknowFragment extends Fragment {
 
         RecyclerView rv_news = view.findViewById(R.id.rv_news);
         news = NewsModel.createNewsList(10);
+        //Log.i(news.get(0).getTitle(), "String");
         NewsAdapter adapter = new NewsAdapter(news);
         rv_news.setAdapter(adapter);
         rv_news.setLayoutManager(new LinearLayoutManager(getActivity()));
