@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.myctrace.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/check_in"
+        android:name="com.example.myctrace.ui.checkin.CheckIn"
+        android:label="Check In"
+        tools:layout="@layout/check_in_fragment" />
 
     <fragment
         android:id="@+id/navigation_notifications"
@@ -24,9 +24,28 @@
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
-        android:id="@+id/check_in"
-        android:name="com.example.myctrace.ui.checkin.CheckInFragment"
-        android:label="Check In"
-        tools:layout="@layout/check_in_fragment" />
+        android:id="@+id/check_in_history"
+        android:name="com.example.myctrace.ui.checkinhistory.CheckInHistoryFragment"
+        android:label="Check In History"
+        tools:layout="@layout/check_in_history_fragment" />
+
+        
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.myctrace.ui.profile.ProfileFragment"
+        android:label="My Profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/scan_qr"
+        android:name="com.example.myctrace.ui.scanqr.ScanQr"
+        android:label="ScanQr"
+        tools:layout="@layout/scan_qr_fragment" />
+
+    <fragment
+        android:id="@+id/search_test_location"
+        android:name="com.example.myctrace.ui.searchtestlocation.SearchTestLocation"
+        android:label="Search Test Location"
+        tools:layout="@layout/search_test_location_fragment" />
 
 </navigation>

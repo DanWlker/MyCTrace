@@ -1,4 +1,4 @@
-package com.example.myctrace.ui.checkin;
+package com.example.myctrace.ui.assessment;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,24 +14,24 @@ import android.view.ViewGroup;
 
 import com.example.myctrace.R;
 
-public class CheckInFragment extends Fragment {
+public class AssessmentFragment extends Fragment {
 
-    private CheckInViewModel mViewModel;
+    private AssessmentViewModel mViewModel;
 
-    public static CheckInFragment newInstance() {
-        return new CheckInFragment();
+    public static AssessmentFragment newInstance() {
+        return new AssessmentFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.check_in_fragment, container, false);
+        return inflater.inflate(R.layout.assessment_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(CheckInViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(AssessmentViewModel.class);
         // TODO: Use the ViewModel
     }
 

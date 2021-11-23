@@ -7,10 +7,12 @@ import androidx.lifecycle.ViewModel;
 public class HomeViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
+    //mUName, mConfirmedCase, mRecoveredCase, mVacProgress, mRiskStatus, mRiskUpdated, mVacStatus, mVacUpdated
+    String uname = "Username";
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("Hello, " + uname);
     }
 
     public LiveData<String> getText() {

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="320dp"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.searchtestlocation.SearchTestLocation"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/editTextLocationName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Search Location"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:drawableEnd="@drawable/ic_map_pin"
+        android:drawableTint="@color/black"
+        android:layout_marginVertical="30dp"
+        android:textColor="@color/blue_primary"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <fragment
+                android:name="com.example.myctrace.ui.components.ComponentLocationCard"
+                android:id="@+id/fooFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="10dp"/>
+
+            <fragment
+                android:name="com.example.myctrace.ui.components.ComponentLocationCard"
+                android:id="@+id/fooFragment2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="10dp"/>
+
+            <fragment
+                android:name="com.example.myctrace.ui.components.ComponentLocationCard"
+                android:id="@+id/fooFragment3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="10dp"/>
+
+            <fragment
+                android:name="com.example.myctrace.ui.components.ComponentLocationCard"
+                android:id="@+id/fooFragment4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="10dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

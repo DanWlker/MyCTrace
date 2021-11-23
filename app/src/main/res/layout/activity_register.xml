@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/registerbackground"
+    android:theme="@style/ThemeOverlay.MyCTrace.FullscreenContainer"
+    tools:context=".ui.register.Register"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textSize="35dp"
+            android:textColor="@color/green_primary"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="32dp" />
+
+        <EditText
+            android:id="@+id/editTextIdentificationCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Identification Card Number"
+            android:inputType="text"
+            android:drawableEnd="@drawable/ic_user"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:drawableEnd="@drawable/ic_lock"/>
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="30dp" />
+
+        <EditText
+            android:id="@+id/editTextRetypePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Retype Password"
+            android:inputType="textPassword"
+            android:drawableEnd="@drawable/ic_lock"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/editTextPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Phone Number"
+                android:inputType="phone"
+                android:layout_weight="1"
+                android:drawableEnd="@drawable/ic_phone"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Get Code"
+                android:layout_weight="0"
+                android:layout_marginLeft="10dp"
+                style="@style/GreenMaterialButton"/>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="70dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:id="@+id/register_button"
+            style="@style/GreenMaterialButton"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Click here to "
+                android:textAlignment="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:textAlignment="center"
+                android:clickable="true"
+                android:textColor="@color/orange_primary"
+                android:id="@+id/login_text"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

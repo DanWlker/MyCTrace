@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/loginbackground"
+    android:theme="@style/ThemeOverlay.MyCTrace.FullscreenContainer"
+    tools:context=".ui.login.Login"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textSize="35dp"
+            android:textColor="@color/blue_primary"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="32dp" />
+
+        <EditText
+            android:id="@+id/editTextIdentificationCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Identification Card Number"
+            android:inputType="text"
+            android:textColor="@color/blue_primary"
+            android:drawableEnd="@drawable/ic_user"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@color/blue_primary"
+            android:drawableEnd="@drawable/ic_lock"/>
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="70dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            style="@style/BlueMaterialButton"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Click here to "
+                android:textAlignment="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:textAlignment="center"
+                android:clickable="true"
+                android:textColor="@color/orange_primary"
+                android:id="@+id/register_text"
+                />
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
