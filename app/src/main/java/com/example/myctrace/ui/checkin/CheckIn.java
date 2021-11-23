@@ -4,6 +4,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +19,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myctrace.R;
+import com.example.myctrace.ui.EmulateQRScanningPage;
 import com.example.myctrace.ui.checkinhistory.CheckInHistoryFragment;
+import com.example.myctrace.ui.login.Login;
+import com.example.myctrace.ui.register.Register;
 import com.example.myctrace.ui.scanqr.ScanQr;
 
 import org.w3c.dom.Text;
@@ -71,6 +75,16 @@ public class CheckIn extends Fragment {
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 ft.addToBackStack(null);
                 ft.commit();
+            }
+        });
+
+        Button buttonSelfCheckIn = view.findViewById(R.id.btn_self_check_in);
+        buttonSelfCheckIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), EmulateQRScanningPage.class);
+                //TODO:change to start activity without letting the user able to press back button to access stack history
+                startActivity(intent);
             }
         });
 

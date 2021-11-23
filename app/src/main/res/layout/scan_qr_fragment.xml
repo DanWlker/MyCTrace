@@ -65,6 +65,7 @@
         android:text="Check In"
         app:cornerRadius="10dp"
         style="@style/BlueMaterialButton"
+        android:id="@+id/scan_qr_check_in_button"
         />
 
 

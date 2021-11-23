@@ -152,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Self Check In"
-            android:id="@+id/self_check_in"
+            android:id="@+id/btn_self_check_in"
             style="@style/GreenMaterialButton"
             app:icon="@drawable/ic_user"
             app:iconTint="@color/green_primary"/>
