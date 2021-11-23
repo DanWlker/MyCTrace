@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/homebackground"
     tools:context=".ui.home.HomeFragment">
 
     <LinearLayout
@@ -26,14 +25,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingHorizontal="15dp"
-            android:clipToPadding="false"
             android:gravity="center">
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="175dp"
+                android:layout_width="0dp"
+                android:layout_weight=".45"
+                android:layout_margin="5dp"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
                 app:contentPadding="15dp"
                 app:cardCornerRadius="10dp"
                 app:cardBackgroundColor="@color/blue_secondary"
@@ -59,9 +57,10 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="175dp"
+                android:layout_width="0dp"
+                android:layout_weight=".45"
+                android:layout_margin="5dp"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
                 app:contentPadding="15dp"
                 app:cardCornerRadius="10dp"
                 app:cardBackgroundColor="@color/green_secondary"
@@ -136,15 +135,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingHorizontal="15dp"
-            android:clipToPadding="false"
             android:gravity="center">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_risk"
-                android:layout_width="175dp"
+                android:layout_width="0dp"
+                android:layout_weight=".45"
+                android:layout_margin="5dp"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
                 app:contentPadding="15dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
@@ -193,21 +191,16 @@
                             android:textSize="10dp"/>
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_chevron_right"/>
-
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_vac"
-                android:layout_width="175dp"
+                android:layout_width="0dp"
+                android:layout_weight=".45"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
+                android:layout_margin="5dp"
                 app:contentPadding="15dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
@@ -257,12 +250,6 @@
                             android:textSize="10dp"/>
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_chevron_right"/>
-
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -282,15 +269,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingHorizontal="15dp"
-            android:clipToPadding="false"
             android:gravity="center">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_todo"
-                android:layout_width="175dp"
+                android:layout_width="0dp"
+                android:layout_weight=".45"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
+                android:layout_margin="5dp"
                 app:contentPadding="15dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
@@ -343,7 +329,9 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_toknow"
-                android:layout_width="175dp"
+                android:layout_width="0dp"
+                android:layout_weight=".45"
+                android:layout_margin="5dp"
                 android:layout_height="wrap_content"
                 app:cardUseCompatPadding="true"
                 app:contentPadding="15dp"
