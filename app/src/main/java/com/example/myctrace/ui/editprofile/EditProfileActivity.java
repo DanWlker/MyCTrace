@@ -1,4 +1,4 @@
-package com.example.myctrace;
+package com.example.myctrace.ui.editprofile;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.myctrace.R;
 
 public class EditProfileActivity extends AppCompatActivity {
 

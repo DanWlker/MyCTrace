@@ -1,6 +1,5 @@
 package com.example.myctrace.ui.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myctrace.R;
-import com.example.myctrace.RiskAssessmentActivity;
 import com.example.myctrace.databinding.FragmentHomeBinding;
 import com.example.myctrace.ui.todo.TodoFragment;
 import com.example.myctrace.ui.toknow.ToknowFragment;

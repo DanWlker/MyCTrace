@@ -1,24 +1,19 @@
 package com.example.myctrace.ui.todo;
 
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.myctrace.R;
-import com.example.myctrace.RiskAssessmentActivity;
-import com.example.myctrace.databinding.FragmentHomeBinding;
+import com.example.myctrace.ui.riskassesment.RiskAssessmentActivity;
 import com.example.myctrace.databinding.TodoFragmentBinding;
-import com.example.myctrace.ui.home.HomeViewModel;
 import com.google.android.material.card.MaterialCardView;
 
 public class TodoFragment extends Fragment {

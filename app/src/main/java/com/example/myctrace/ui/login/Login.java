@@ -13,9 +13,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
 
+import com.example.myctrace.MainActivity;
 import com.example.myctrace.databinding.ActivityLoginBinding;
 import com.example.myctrace.R;
 import com.example.myctrace.ui.register.Register;
+import com.example.myctrace.utilities.TempUserLogin;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -79,6 +81,19 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
+
+        findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TempUserLogin.loggedIn = true;
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                //TODO:change to start activity without letting the user able to press back button to access stack history
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
 
 
         // Trigger the initial hide() shortly after the activity has been

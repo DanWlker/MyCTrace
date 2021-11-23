@@ -9,6 +9,7 @@ import android.view.View;
 import com.example.myctrace.ui.icverification.ICVerification;
 import com.example.myctrace.ui.login.Login;
 import com.example.myctrace.ui.register.Register;
+import com.example.myctrace.utilities.TempUserLogin;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,10 +32,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(true) { //if no login
+        if(!TempUserLogin.loggedIn) { //if no login
             Intent intent = new Intent(this, Login.class);
             //TODO:change to start activity without letting the user able to press back button to access stack history
             startActivity(intent);
+            finish();
         }
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());

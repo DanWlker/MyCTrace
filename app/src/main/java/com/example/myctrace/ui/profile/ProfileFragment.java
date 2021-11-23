@@ -5,21 +5,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.myctrace.EditProfileActivity;
-import com.example.myctrace.R;
-import com.example.myctrace.RiskAssessmentActivity;
+import com.example.myctrace.ui.editprofile.EditProfileActivity;
+import com.example.myctrace.ui.riskassesment.RiskAssessmentActivity;
 import com.example.myctrace.databinding.FragmentProfileBinding;
 import com.google.android.material.card.MaterialCardView;
 

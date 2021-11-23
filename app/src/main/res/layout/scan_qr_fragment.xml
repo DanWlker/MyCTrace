@@ -64,6 +64,7 @@
         android:layout_height="wrap_content"
         android:text="Check In"
         app:cornerRadius="10dp"
+        style="@style/BlueMaterialButton"
         />
 
 

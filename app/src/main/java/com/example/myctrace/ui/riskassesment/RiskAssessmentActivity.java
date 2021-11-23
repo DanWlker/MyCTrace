@@ -1,8 +1,10 @@
-package com.example.myctrace;
+package com.example.myctrace.ui.riskassesment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.myctrace.R;
 
 public class RiskAssessmentActivity extends AppCompatActivity {
 

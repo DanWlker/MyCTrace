@@ -57,7 +57,8 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="Login"
-            style="@style/BlueMaterialButton"/>
+            style="@style/BlueMaterialButton"
+            android:id="@+id/login_button"/>
 
         <Space
             android:layout_width="0dp"

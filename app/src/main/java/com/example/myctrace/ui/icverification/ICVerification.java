@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,8 +13,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
 
+import com.example.myctrace.MainActivity;
 import com.example.myctrace.databinding.ActivityIcverificationBinding;
 import com.example.myctrace.R;
+import com.example.myctrace.ui.login.Login;
+import com.example.myctrace.utilities.TempUserLogin;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -67,6 +71,19 @@ public class ICVerification extends AppCompatActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+
+        findViewById(R.id.icveri_confirm_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TempUserLogin.loggedIn = true;
+                Intent intent = new Intent(ICVerification.this, MainActivity.class);
+                //to clear the register page, may need revision
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //TODO:change to start activity without letting the user able to press back button to access stack history
+                startActivity(intent);
+                finish();
+            }
+        });
 
         delayedHide(100);
     }

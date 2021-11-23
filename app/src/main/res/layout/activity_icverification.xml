@@ -74,6 +74,7 @@
             android:layout_height="wrap_content"
             android:text="Confirm"
             style="@style/GreenMaterialButton"
+            android:id="@+id/icveri_confirm_button"
             />
     </LinearLayout>
 
