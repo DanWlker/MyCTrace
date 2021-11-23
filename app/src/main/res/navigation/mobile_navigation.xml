@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/check_in"
-        android:name="com.example.myctrace.ui.checkin.CheckInFragment"
+        android:name="com.example.myctrace.ui.checkin.CheckIn"
         android:label="Check In"
         tools:layout="@layout/check_in_fragment" />
 
@@ -30,7 +30,7 @@
         tools:layout="@layout/check_in_history_fragment" />
 
         
-        <fragment
+    <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.myctrace.ui.profile.ProfileFragment"
         android:label="My Profile"
