@@ -50,14 +50,16 @@ public class MainActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home,
                 R.id.check_in,
-                R.id.navigation_notifications,
-                R.id.search_test_location)
+                R.id.search_test_location,
+                R.id.navigation_profile
+                )
                 .build();
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home,
                 R.id.check_in,
-                R.id.navigation_notifications,
-                R.id.search_test_location)
+                R.id.search_test_location,
+                R.id.navigation_profile
+                )
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);

@@ -57,7 +57,8 @@
                     android:layout_height="wrap_content"
                     android:text="Low Risk"
                     android:textSize="23sp"
-                    android:textColor="@color/green_primary">
+                    android:textColor="@color/green_primary"
+                    >
                 </TextView>
                 <TextView
                     android:layout_width="wrap_content"
@@ -152,7 +153,9 @@
             android:layout_height="wrap_content"
             android:text="Self Check In"
             android:id="@+id/self_check_in"
-            style="@style/GreenMaterialButton"/>
+            style="@style/GreenMaterialButton"
+            app:icon="@drawable/ic_user"
+            app:iconTint="@color/green_primary"/>
         <Space
             android:layout_width="30dp"
             android:layout_height="match_parent"></Space>
@@ -161,7 +164,9 @@
             android:layout_height="wrap_content"
             android:text="Group Check In"
             android:id="@+id/btn_groupcheckin"
-            style="@style/BlueMaterialButton"/>
+            style="@style/BlueMaterialButton"
+            app:icon="@drawable/ic_users"
+            app:iconTint="@color/blue_primary"/>
 
     </LinearLayout>
 

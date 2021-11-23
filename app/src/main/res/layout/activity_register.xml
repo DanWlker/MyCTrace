@@ -31,7 +31,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Identification Card Number"
-            android:inputType="text" />
+            android:inputType="text"
+            android:drawableEnd="@drawable/ic_user"/>
 
         <Space
             android:layout_width="0dp"
@@ -43,7 +44,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:drawableEnd="@drawable/ic_lock"/>
 
         <Space
             android:layout_width="20dp"
@@ -55,7 +57,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Retype Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:drawableEnd="@drawable/ic_lock"/>
 
         <Space
             android:layout_width="0dp"
@@ -72,7 +75,8 @@
                 android:ems="10"
                 android:hint="Phone Number"
                 android:inputType="phone"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:drawableEnd="@drawable/ic_phone"/>
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"

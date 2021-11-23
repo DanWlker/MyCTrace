@@ -73,8 +73,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Confirm"
-            app:cornerRadius="5dp"
-            ></com.google.android.material.button.MaterialButton>
+            style="@style/GreenMaterialButton"
+            />
     </LinearLayout>
 
 
