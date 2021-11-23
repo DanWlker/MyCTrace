@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.myctrace.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/check_in"
+        android:name="com.example.myctrace.ui.checkin.CheckInFragment"
+        android:label="Check In"
+        tools:layout="@layout/check_in_fragment" />
 
     <fragment
         android:id="@+id/navigation_notifications"
@@ -29,11 +29,12 @@
         android:label="Check In History"
         tools:layout="@layout/check_in_history_fragment" />
 
-    <fragment
-        android:id="@+id/check_in"
-        android:name="com.example.myctrace.ui.checkin.CheckIn"
-        android:label="Check In"
-        tools:layout="@layout/check_in_fragment" />
+        
+        <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.myctrace.ui.profile.ProfileFragment"
+        android:label="My Profile"
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/scan_qr"

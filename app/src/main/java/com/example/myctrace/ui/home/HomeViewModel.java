@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 public class HomeViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
+    //mUName, mConfirmedCase, mRecoveredCase, mVacProgress, mRiskStatus, mRiskUpdated, mVacStatus, mVacUpdated
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();

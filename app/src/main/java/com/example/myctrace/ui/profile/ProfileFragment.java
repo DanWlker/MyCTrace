@@ -1,9 +1,11 @@
-package com.example.myctrace.ui.home;
+package com.example.myctrace.ui.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,30 +16,25 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myctrace.R;
-import com.example.myctrace.databinding.FragmentHomeBinding;
+import com.example.myctrace.databinding.FragmentProfileBinding;
 import com.example.myctrace.ui.assessment.AssessmentFragment;
-import com.example.myctrace.ui.todo.TodoFragment;
-import com.example.myctrace.ui.toknow.ToknowFragment;
 import com.google.android.material.card.MaterialCardView;
 
-public class HomeFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private FragmentHomeBinding binding;
+    private ProfileViewModel profileViewModel;
+    private FragmentProfileBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.tvUName;
         final MaterialCardView cvRisk = binding.cvRisk;
         final MaterialCardView cvVac = binding.cvVac;
-        final MaterialCardView cvTodo = binding.cvTodo;
-        final MaterialCardView cvToknow = binding.cvToknow;
+        final ImageView btn_edit = binding.btnEditprofile;
+        final TextView textView = binding.tvName;
 
         cvRisk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,43 +44,30 @@ public class HomeFragment extends Fragment {
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                 ft.replace(R.id.nav_host_fragment_content_main, riskAssFrag);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(null);
+                ft.addToBackStack(riskAssFrag.getClass().getName());
                 ft.commit();
             }
         });
 
-        cvTodo.setOnClickListener(new View.OnClickListener() {
+        /*btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment toDoFrag = new TodoFragment();
+                Fragment frag = new EditProfileFragment();
 
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.nav_host_fragment_content_main, toDoFrag);
+                ft.replace(R.id.nav_host_fragment_content_main, frag);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 ft.addToBackStack(null);
                 ft.commit();
             }
-        });
+        });*/
 
-        cvToknow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment toKnowFrag = new ToknowFragment();
-
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.nav_host_fragment_content_main, toKnowFrag);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(null);
-                ft.commit();
-            }
-        });
-
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        /*profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
-        });
+        }); */
         return root;
     }
 
