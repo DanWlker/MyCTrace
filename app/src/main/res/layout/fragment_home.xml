@@ -18,6 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hello, User"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/blue_primary"
             android:textSize="24dp" />
 
         <LinearLayout
@@ -34,12 +36,14 @@
                 app:cardUseCompatPadding="true"
                 app:contentPadding="15dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="7dp">
+                app:cardBackgroundColor="@color/blue_secondary"
+                app:cardElevation="0dp">
 
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Daily Confirmed Case:"
+                    android:textColor="@color/blue_primary"
                     android:textSize="10dp"/>
 
                 <TextView
@@ -48,6 +52,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="7979"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue_primary"
                     android:textSize="24dp"/>
 
             </com.google.android.material.card.MaterialCardView>
@@ -58,12 +64,14 @@
                 app:cardUseCompatPadding="true"
                 app:contentPadding="15dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="7dp">
+                app:cardBackgroundColor="@color/green_secondary"
+                app:cardElevation="0dp">
 
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="Daily Recovered Case:"
+                    android:textColor="@color/green_primary"
                     android:textSize="10dp"/>
 
                 <TextView
@@ -71,6 +79,8 @@
                     android:layout_marginTop="32dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/green_primary"
+                    android:textStyle="bold"
                     android:text="7979"
                     android:textSize="24dp"/>
 
@@ -79,6 +89,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -87,6 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Vaccination Progress: "
+                android:textColor="@color/grey_one"
                 android:textSize="18dp"/>
 
             <TextView
@@ -94,6 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24dp"
+                android:textColor="@color/green_primary"
                 android:text="NA%"/>
 
         </LinearLayout>
@@ -106,6 +119,8 @@
             android:indeterminate="false"
             app:trackThickness="15dp"
             app:trackCornerRadius="5dp"
+            app:trackColor="@color/green_secondary"
+            app:indicatorColor="@color/green_primary"
             />
 
         <TextView
@@ -113,22 +128,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="My Status: "
+            android:textColor="@color/blue_primary"
+            android:fontFamily="sans-serif-light"
             android:textSize="24dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingHorizontal="15dp"
+            android:clipToPadding="false"
             android:gravity="center">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_risk"
-                android:layout_width="185dp"
+                android:layout_width="175dp"
                 android:layout_height="wrap_content"
                 app:cardUseCompatPadding="true"
                 app:contentPadding="15dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="10dp">
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/orange_secondary">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -142,10 +162,9 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:src="@drawable/ic_home_black_24dp"
+                            android:src="@drawable/ic_check_circle_orange"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
-
 
                         <TextView
                             android:id="@+id/tv_riskStatus"
@@ -153,6 +172,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Risk Status"
+                            android:textColor="@color/orange_primary"
+                            android:textStyle="bold"
                             android:textSize="12dp"/>
 
                         <TextView
@@ -160,6 +181,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Last Updated: "
+                            android:textColor="@color/orange_primary"
                             android:textSize="10dp"/>
 
                         <TextView
@@ -167,6 +189,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="DD/MM/YYYY"
+                            android:textColor="@color/orange_primary"
                             android:textSize="10dp"/>
                     </LinearLayout>
 
@@ -174,7 +197,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_home_black_24dp"/>
+                        android:src="@drawable/ic_chevron_right"/>
 
                 </LinearLayout>
 
@@ -182,12 +205,13 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_vac"
-                android:layout_width="185dp"
+                android:layout_width="175dp"
                 android:layout_height="wrap_content"
                 app:cardUseCompatPadding="true"
                 app:contentPadding="15dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="10dp">
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/green_secondary">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -201,7 +225,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:src="@drawable/ic_home_black_24dp"
+                            android:src="@drawable/ic_user_green"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -212,12 +236,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Vaccination Status"
+                            android:textStyle="bold"
+                            android:textColor="@color/green_primary"
                             android:textSize="12dp"/>
 
                         <TextView
                             android:layout_marginTop="7dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/green_primary"
                             android:text="Certificate Issued: "
                             android:textSize="10dp"/>
 
@@ -225,6 +252,7 @@
                             android:id="@+id/tv_vac"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/green_primary"
                             android:text="DD/MM/YYYY"
                             android:textSize="10dp"/>
                     </LinearLayout>
@@ -233,7 +261,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_home_black_24dp"/>
+                        android:src="@drawable/ic_chevron_right"/>
 
                 </LinearLayout>
 
@@ -246,22 +274,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Daily Tasks: "
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/blue_primary"
             android:textSize="24dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingHorizontal="15dp"
+            android:clipToPadding="false"
             android:gravity="center">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_todo"
-                android:layout_width="185dp"
+                android:layout_width="175dp"
                 android:layout_height="wrap_content"
                 app:cardUseCompatPadding="true"
                 app:contentPadding="15dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="10dp">
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/blue_secondary">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -275,7 +308,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:src="@drawable/ic_home_black_24dp"
+                            android:src="@drawable/ic_alert_circle_blue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -285,6 +318,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Things To Do"
+                            android:textStyle="bold"
+                            android:textColor="@color/blue_primary"
                             android:textSize="12dp"/>
 
                         <TextView
@@ -292,6 +327,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="View all tasks that require actions"
+                            android:textColor="@color/blue_primary"
                             android:textSize="10dp"/>
                     </LinearLayout>
 
@@ -299,7 +335,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_home_black_24dp"/>
+                        android:src="@drawable/ic_chevron_right"/>
 
                 </LinearLayout>
 
@@ -307,12 +343,13 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_toknow"
-                android:layout_width="185dp"
+                android:layout_width="175dp"
                 android:layout_height="wrap_content"
                 app:cardUseCompatPadding="true"
                 app:contentPadding="15dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="10dp">
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/green_secondary">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -326,7 +363,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:src="@drawable/ic_home_black_24dp"
+                            android:src="@drawable/ic_info_green"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -336,6 +373,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Things To Know"
+                            android:textStyle="bold"
+                            android:textColor="@color/green_primary"
                             android:textSize="12dp"/>
 
                         <TextView
@@ -343,6 +382,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="View latest updates and informormation"
+                            android:textColor="@color/green_primary"
                             android:textSize="10dp"/>
                     </LinearLayout>
 
@@ -350,7 +390,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_home_black_24dp"/>
+                        android:src="@drawable/ic_chevron_right"/>
 
                 </LinearLayout>
 

@@ -28,6 +28,12 @@
             android:label="@string/title_activity_register"
             android:theme="@style/Theme.MyCTrace.Fullscreen" />
         <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RiskAssessmentActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"

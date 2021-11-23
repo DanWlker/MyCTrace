@@ -44,6 +44,8 @@
                     android:id="@+id/tv_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/blue_primary"
+                    android:textStyle="bold"
                     android:text="Username"
                     android:textSize="16dp" />
 
@@ -53,6 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
                     android:text="60111111111"
+                    android:textColor="@color/blue_primary"
                     android:textSize="12dp" />
 
                 <TextView
@@ -61,6 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="999999-99-9999"
+                    android:textColor="@color/blue_primary"
                     android:textSize="12dp" />
 
                 <TextView
@@ -68,7 +72,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Show QR"
+                    android:text="@string/show_qr"
+                    android:textColor="@color/orange_primary"
                     android:textSize="12dp" />
 
 
@@ -79,7 +84,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_home_black_24dp"/>
+                android:src="@drawable/ic_chevron_right"/>
 
         </LinearLayout>
 
@@ -88,6 +93,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="My Status: "
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/blue_primary"
             android:textSize="24dp" />
 
         <com.google.android.material.card.MaterialCardView
@@ -97,6 +104,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="15dp"
             app:cardBackgroundColor="#EFF5FF"
+            app:cardElevation="0dp"
             app:contentPadding="10dp">
 
             <LinearLayout
@@ -109,7 +117,7 @@
                     android:layout_marginHorizontal="5dp"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_home_black_24dp"/>
+                    android:src="@drawable/ic_check_circle_blue"/>
 
                 <LinearLayout
                     android:layout_weight=".8"
@@ -124,12 +132,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Risk Status"
+                        android:textColor="@color/blue_primary"
+                        android:textStyle="bold"
                         android:textSize="16dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12dp"
+                        android:textColor="@color/blue_primary"
                         android:text="Health Risk Assessment:" />
 
                     <TextView
@@ -137,6 +148,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12dp"
+                        android:textColor="@color/blue_primary"
                         android:text="Last Updated: DD Month YYYY"/>
 
                 </LinearLayout>
@@ -145,7 +157,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_home_black_24dp"/>
+                    android:src="@drawable/ic_chevron_right"/>
 
             </LinearLayout>
 
@@ -158,6 +170,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="15dp"
             app:cardBackgroundColor="#EFF9F8"
+            app:cardElevation="0dp"
             app:contentPadding="10dp">
 
             <LinearLayout
@@ -170,7 +183,7 @@
                     android:layout_marginHorizontal="5dp"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_home_black_24dp"/>
+                    android:src="@drawable/ic_user_green"/>
 
                 <LinearLayout
                     android:layout_weight=".8"
@@ -185,12 +198,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Vaccination Status"
+                        android:textColor="@color/green_primary"
+                        android:textStyle="bold"
                         android:textSize="16dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12dp"
+                        android:textColor="@color/green_primary"
                         android:text="Digital Certificate Issued:" />
 
                     <TextView
@@ -198,6 +214,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12dp"
+                        android:textColor="@color/green_primary"
                         android:text=" DD Month YYYY"/>
 
                 </LinearLayout>
@@ -206,7 +223,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_home_black_24dp"/>
+                    android:src="@drawable/ic_chevron_right"/>
 
             </LinearLayout>
 
@@ -217,6 +234,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Current Location: "
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/blue_primary"
             android:textSize="24dp" />
 
         <com.google.android.material.card.MaterialCardView
@@ -225,6 +244,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="15dp"
             app:cardBackgroundColor="#FFF4F4"
+            app:cardElevation="0dp"
             app:contentPadding="10dp">
 
             <LinearLayout
@@ -237,7 +257,7 @@
                     android:layout_marginHorizontal="5dp"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_home_black_24dp"/>
+                    android:src="@drawable/ic_map_pin_orange"/>
 
                 <LinearLayout
                     android:layout_weight=".8"
@@ -252,12 +272,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Current State"
+                        android:textStyle="bold"
+                        android:textColor="@color/orange_primary"
                         android:textSize="16dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12dp"
+                        android:textColor="@color/orange_primary"
                         android:text="Location Risk:" />
 
                     <TextView
@@ -265,15 +288,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12dp"
+                        android:textColor="@color/orange_primary"
                         android:text="Zone: Risk Status"/>
 
                 </LinearLayout>
-
-                <ImageView
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_home_black_24dp"/>
 
             </LinearLayout>
 
