@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MyCTrace" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.MyCTrace" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue_primary</item>
         <item name="colorPrimaryVariant">@color/blue_secondary</item>
@@ -14,11 +14,16 @@
         <!-- Customize your theme here. -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
+
     <style name="Theme.MyCTrace.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.MyCTrace.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.MyCTrace.AppBarOverlay" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/grey_one</item>
+    </style>
+
     <style name="Theme.MyCTrace.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

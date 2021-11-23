@@ -1,5 +1,6 @@
 package com.example.myctrace.ui.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +17,10 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.myctrace.EditProfileActivity;
 import com.example.myctrace.R;
+import com.example.myctrace.RiskAssessmentActivity;
 import com.example.myctrace.databinding.FragmentProfileBinding;
-import com.example.myctrace.ui.assessment.AssessmentFragment;
 import com.google.android.material.card.MaterialCardView;
 
 public class ProfileFragment extends Fragment {
@@ -40,29 +42,18 @@ public class ProfileFragment extends Fragment {
         cvRisk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment riskAssFrag = new AssessmentFragment();
-
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.beginTransaction()
-                        .replace(R.id.nav_host_fragment_content_main, riskAssFrag, null)
-                        .setReorderingAllowed(false)
-                        .addToBackStack(null)
-                        .commit();
+                Intent i = new Intent(getActivity(), RiskAssessmentActivity.class);
+                startActivity(i);
             }
         });
 
-        /*btn_edit.setOnClickListener(new View.OnClickListener() {
+        btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment frag = new EditProfileFragment();
-
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.nav_host_fragment_content_main, frag);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(null);
-                ft.commit();
+                Intent i = new Intent(getActivity(), EditProfileActivity.class);
+                startActivity(i);
             }
-        });*/
+        });
 
         /*profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

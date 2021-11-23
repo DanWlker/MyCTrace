@@ -24,6 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12dp"
+                android:textColor="@color/blue_primary"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec arcu ac quam mollis venenatis ut et nisi."/>
 
             <ImageView

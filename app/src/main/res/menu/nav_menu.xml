@@ -6,22 +6,22 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/navigation_home"
-            android:icon="@drawable/ic_home_black_24dp"
+            android:icon="@drawable/ic_home"
             android:title="@string/title_home" />
 
         <item
             android:id="@+id/check_in"
-            android:icon="@drawable/ic_notifications_black_24dp"
+            android:icon="@drawable/ic_check_circle"
             android:title="Check In" />
 
         <item
             android:id="@+id/navigation_location"
-            android:icon="@drawable/ic_notifications_black_24dp"
+            android:icon="@drawable/ic_map"
             android:title="Test Location" />
 
         <item
             android:id="@+id/navigation_profile"
-            android:icon="@drawable/ic_notifications_black_24dp"
+            android:icon="@drawable/ic_user"
             android:title="My Profile" />
     </group>
 

@@ -9,14 +9,18 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.MyCTrace.AppBarOverlay">
+        android:theme="@style/Theme.MyCTrace.AppBarOverlay"
+        app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.MyCTrace.PopupOverlay" />
+            app:titleTextColor="@color/grey_one"
+            android:textAlignment="center"
+            app:popupTheme="@style/Theme.MyCTrace.PopupOverlay">
+
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 

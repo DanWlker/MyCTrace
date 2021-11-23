@@ -13,10 +13,12 @@
         android:padding="28dp">
 
         <TextView
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pending Tasks: "
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/blue_primary"
             android:textSize="24dp" />
 
         <com.google.android.material.card.MaterialCardView
@@ -43,12 +45,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Health Risk Assessment"
+                        android:textColor="@color/blue_primary"
                         android:textSize="16dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12dp"
+                        android:textColor="@color/blue_primary"
                         android:text="Click to answer questions for your daily health risk assessment!" />
 
                 </LinearLayout>
@@ -57,7 +61,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_home_black_24dp"/>
+                    android:src="@drawable/ic_chevron_right"/>
 
             </LinearLayout>
 

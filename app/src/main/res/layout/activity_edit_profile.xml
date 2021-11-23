@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="28dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.profile.EditProfileFragment">
+    tools:context=".EditProfileActivity">
 
     <LinearLayout
         android:layout_alignParentTop="true"
@@ -14,7 +14,18 @@
         android:orientation="vertical"
         android:gravity="center">
 
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:textColor="@color/blue_primary"
+            android:textSize="24dp"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif-light"/>
+
         <androidx.cardview.widget.CardView
+            android:layout_marginTop="30dp"
             android:layout_width="124dp"
             android:layout_height="124dp"
             app:cardBackgroundColor="#DDDDDD"
@@ -27,6 +38,15 @@
                 android:src="@drawable/ic_baseline_person_24"/>
 
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/btn_editpic"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_profile_pic"
+            android:textColor="@color/orange_primary"
+            android:textAlignment="center"/>
 
         <TextView
             android:layout_marginTop="35dp"
@@ -73,12 +93,11 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_save"
+    <com.google.android.material.button.MaterialButton
+        style="@style/GreenMaterialButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp"
         android:text="Save Details" />
 
 </RelativeLayout>

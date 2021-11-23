@@ -3,6 +3,7 @@ package com.example.myctrace.ui.todo;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,9 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myctrace.R;
+import com.example.myctrace.RiskAssessmentActivity;
 import com.example.myctrace.databinding.FragmentHomeBinding;
 import com.example.myctrace.databinding.TodoFragmentBinding;
-import com.example.myctrace.ui.assessment.AssessmentFragment;
 import com.example.myctrace.ui.home.HomeViewModel;
 import com.google.android.material.card.MaterialCardView;
 
@@ -38,13 +39,8 @@ public class TodoFragment extends Fragment {
         cvRisk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment riskAssFrag = new AssessmentFragment();
-
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.nav_host_fragment_content_main, riskAssFrag);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(null);
-                ft.commit();
+                Intent i = new Intent(getActivity(), RiskAssessmentActivity.class);
+                startActivity(i);
             }
         });
 
