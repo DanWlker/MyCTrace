@@ -49,10 +49,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <GridView
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:numColumns="4"></GridView>
+                android:columnCount="4"
+                android:padding="15dp">
+                <fragment
+                    android:name="com.example.myctrace.ui.components.ComponentClickableUserPhoto"
+                    android:id="@+id/fooFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"/>
+                <fragment
+                    android:name="com.example.myctrace.ui.components.ComponentClickableUserPhoto"
+                    android:id="@+id/fooFragment2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    />
+                <fragment
+                    android:name="com.example.myctrace.ui.components.ComponentClickableUserPhoto"
+                    android:id="@+id/fooFragment3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"/>
+                <fragment
+                    android:name="com.example.myctrace.ui.components.ComponentClickableUserPhoto"
+                    android:id="@+id/fooFragment4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    />
+            </GridLayout>
         </ScrollView>
 
     </com.google.android.material.card.MaterialCardView>
