@@ -40,13 +40,13 @@ public class HomeFragment extends Fragment {
         final MaterialCardView cvTodo = binding.cvTodo;
         final MaterialCardView cvToknow = binding.cvToknow;
 
-        cvRisk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getActivity(), RiskAssessmentActivity.class);
-                startActivity(i);
-            }
-        });
+//        cvRisk.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(getActivity(), RiskAssessmentActivity.class);
+//                startActivity(i);
+//            }
+//        });
 
         cvTodo.setOnClickListener(new View.OnClickListener() {
             @Override
