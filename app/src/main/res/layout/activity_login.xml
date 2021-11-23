@@ -51,10 +51,11 @@
             android:layout_width="20dp"
             android:layout_height="70dp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="Login" />
+            android:text="Login"
+            style="@style/BlueMaterialButton"/>
 
         <Space
             android:layout_width="0dp"

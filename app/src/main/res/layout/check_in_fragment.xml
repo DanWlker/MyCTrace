@@ -152,8 +152,7 @@
             android:layout_height="wrap_content"
             android:text="Self Check In"
             android:id="@+id/self_check_in"
-            app:cornerRadius="10dp">
-        </com.google.android.material.button.MaterialButton>
+            style="@style/GreenMaterialButton"/>
         <Space
             android:layout_width="30dp"
             android:layout_height="match_parent"></Space>
@@ -161,9 +160,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Group Check In"
-            app:cornerRadius="10dp"
-            android:id="@+id/btn_groupcheckin">
-        </com.google.android.material.button.MaterialButton>
+            android:id="@+id/btn_groupcheckin"
+            style="@style/BlueMaterialButton"/>
 
     </LinearLayout>
 

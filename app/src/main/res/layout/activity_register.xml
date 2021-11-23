@@ -74,12 +74,13 @@
                 android:inputType="phone"
                 android:layout_weight="1"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Get Code"
                 android:layout_weight="0"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                style="@style/GreenMaterialButton"/>
 
         </LinearLayout>
 
@@ -87,11 +88,12 @@
             android:layout_width="0dp"
             android:layout_height="70dp"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="Register"
-            android:id="@+id/register_button"/>
+            android:id="@+id/register_button"
+            style="@style/GreenMaterialButton"/>
 
         <Space
             android:layout_width="0dp"
