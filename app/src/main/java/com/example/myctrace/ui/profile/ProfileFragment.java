@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -41,11 +42,12 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 Fragment riskAssFrag = new AssessmentFragment();
 
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.nav_host_fragment_content_main, riskAssFrag);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(riskAssFrag.getClass().getName());
-                ft.commit();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.beginTransaction()
+                        .replace(R.id.nav_host_fragment_content_main, riskAssFrag, null)
+                        .setReorderingAllowed(false)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 

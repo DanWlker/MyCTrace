@@ -1,7 +1,9 @@
 package com.example.myctrace;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -71,6 +73,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                navController.navigate(R.id.navigation_home);
+                return true;
+            case R.id.check_in:
+                navController.navigate(R.id.check_in);
+                return true;
+            case R.id.navigation_notifications:
+                navController.navigate(R.id.navigation_notifications);
+                return true;
+            case R.id.navigation_profile:
+                navController.navigate(R.id.navigation_profile);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /*@Override
     public void onBackPressed(){
         FragmentManager fm = getSupportFragmentManager();
         if (fm.getBackStackEntryCount() > 0) {
@@ -78,6 +104,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
-    }
+    }*/
 
 }
