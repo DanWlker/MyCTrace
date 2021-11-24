@@ -8,11 +8,9 @@
     tools:context=".ui.components.ComponentsPopUpAddUser">
 
         <com.google.android.material.card.MaterialCardView
+            style="@style/CustomCardViewStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="30dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="25dp">
+            android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -26,10 +24,13 @@
                     android:layout_height="wrap_content"
                     android:text="Add User"
                     android:textAlignment="center"
-                    android:textSize="35dp"
+                    android:textColor="@color/blue_primary"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="24dp"
                     />
 
                 <androidx.cardview.widget.CardView
+                    android:layout_marginTop="15dp"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
                     app:cardBackgroundColor="#DDDDDD"
