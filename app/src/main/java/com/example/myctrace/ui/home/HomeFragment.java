@@ -27,6 +27,8 @@ import com.example.myctrace.ui.todo.TodoFragment;
 import com.example.myctrace.ui.toknow.ToknowFragment;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +43,8 @@ public class HomeFragment extends Fragment {
     TextView tvConfirmedCase, tvRecoveredCase, tvVacProgress;
     MaterialCardView cvRisk, cvVac, cvTodo, cvToknow;
     LinearProgressIndicator pbVac;
-    String population = "";
+
+    private DatabaseReference mDatabase;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -60,6 +63,9 @@ public class HomeFragment extends Fragment {
         tvRecoveredCase = binding.tvRecoveredCase;
         tvVacProgress = binding.tvVacProgress;
         pbVac = binding.pbVacProgress;
+
+        //mDatabase = FirebaseDatabase.getInstance().getReference();
+        //mDatabase.child("test").setValue("Hello");
 
 //        cvRisk.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -123,8 +129,6 @@ public class HomeFragment extends Fragment {
 
                             tvConfirmedCase.setText(jsonObject.getString("todayCases"));
                             tvRecoveredCase.setText(jsonObject.getString("todayRecovered"));
-                            population = jsonObject.getString("population");
-
                         }
                         catch (JSONException e) {
                             e.printStackTrace();
@@ -159,7 +163,7 @@ public class HomeFragment extends Fragment {
                             JSONObject vacjson = jsonObject.getJSONArray("data").getJSONObject(0);
                             String vakcomplete = vacjson.getString("vakdosecomplete");
                             String population = vacjson.getString("pop");
-                            
+
                             double res = 100 * Double.valueOf(vakcomplete) / Double.valueOf(population);
 
                             tvVacProgress.setText(String.format("%.2f", res) + "%");
