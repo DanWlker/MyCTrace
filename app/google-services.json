@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "94592554329",
+    "project_id": "myctrace-be827",
+    "storage_bucket": "myctrace-be827.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94592554329:android:deee5f0368569fdaffe848",
+        "android_client_info": {
+          "package_name": "com.example.myctrace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "94592554329-5jbun867t9ou67u1q7d0btq4bur9v1sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMcsgg5MvVA-_4K06XFNPlxVkHaTxX3Mg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "94592554329-5jbun867t9ou67u1q7d0btq4bur9v1sb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
