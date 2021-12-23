@@ -23,6 +23,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myctrace.R;
 import com.example.myctrace.databinding.FragmentHomeBinding;
+import com.example.myctrace.ui.notifications.NotificationsFragment;
 import com.example.myctrace.ui.todo.TodoFragment;
 import com.example.myctrace.ui.toknow.ToknowFragment;
 import com.google.android.material.card.MaterialCardView;
@@ -37,7 +38,7 @@ import org.w3c.dom.Text;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    //private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
 
     TextView tvConfirmedCase, tvRecoveredCase, tvVacProgress;
@@ -48,13 +49,13 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        //homeViewModel =
+                //new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.tvUName;
+        //final TextView textView = binding.tvUName;
         cvRisk = binding.cvRisk;
         cvVac = binding.cvVac;
         cvTodo = binding.cvTodo;
@@ -104,12 +105,12 @@ public class HomeFragment extends Fragment {
         fetchCovidAPI();
         fetchVaccineAPI();
 
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        /*homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
-        });
+        }); */
         return root;
     }
 

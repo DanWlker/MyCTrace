@@ -8,7 +8,6 @@
     tools:context=".ui.toknow.ToknowFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:padding="14dp"
         android:clipToPadding="false"
         android:id="@+id/rv_news"
         android:layout_width="match_parent"

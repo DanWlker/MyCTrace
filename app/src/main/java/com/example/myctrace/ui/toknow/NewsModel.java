@@ -5,19 +5,35 @@ import java.util.ArrayList;
 
 public class NewsModel {
 
-    public String mtitle;
+    private String title, url, imgurl;
 
-    public NewsModel(String title){
-        mtitle = title;
-    }
+    public NewsModel() {}
 
     public String getTitle(){
-        return mtitle;
+        return title;
     }
 
-    private static int lastNewsId = 0;
+    public String getUrl(){
+        return url;
+    }
 
-    public static ArrayList<NewsModel> createNewsList(int n){
+    public String getImgUrl(){
+        return imgurl;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgurl = imgUrl;
+    }
+
+    /*public static ArrayList<NewsModel> createNewsList(int n){
         ArrayList<NewsModel> news = new ArrayList<NewsModel>();
 
         for (int i = 1; i < n; ++i){
@@ -25,5 +41,5 @@ public class NewsModel {
         }
 
         return news;
-    }
+    } */
 }
