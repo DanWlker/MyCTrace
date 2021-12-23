@@ -12,7 +12,9 @@ import com.example.myctrace.ui.register.Register;
 import com.example.myctrace.utilities.TempUserLogin;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
@@ -26,7 +28,9 @@ import com.google.android.material.snackbar.Snackbar;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private ActivityMainBinding binding;
+    public ActivityMainBinding binding;
+
+    private ActionBarDrawerToggle drawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         //for action bar
-        setSupportActionBar(binding.appBarMain.toolbar);
+        Toolbar toolbar = binding.appBarMain.toolbar;
+        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = binding.drawerLayout;
         BottomNavigationView navView = findViewById(R.id.nav_view_bottom);
@@ -109,15 +114,5 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    /*@Override
-    public void onBackPressed(){
-        FragmentManager fm = getSupportFragmentManager();
-        if (fm.getBackStackEntryCount() > 0) {
-            fm.popBackStackImmediate();
-        } else {
-            super.onBackPressed();
-        }
-    }*/
 
 }
