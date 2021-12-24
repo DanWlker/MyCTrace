@@ -113,10 +113,7 @@ public class Register extends AppCompatActivity {
         loginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Register.this, Login.class);
-                //TODO:change to start activity without letting the user able to press back button to access stack history
-                startActivity(intent);
-                finish();
+                redirectToLogin();
             }
         });
 
@@ -146,10 +143,20 @@ public class Register extends AppCompatActivity {
         }
 
         //launch next screen and pass the checked data to the ic verification screen
+        redirectToICVerification(input);
+    }
+
+    private void redirectToICVerification(HashMap<String, String> input) {
         Intent intent = new Intent(Register.this, ICVerification.class);
         intent.putExtra("input", input);
         startActivity(intent);
+    }
 
+    private void redirectToLogin() {
+        Intent intent = new Intent(Register.this, Login.class);
+        //TODO:change to start activity without letting the user able to press back button to access stack history
+        startActivity(intent);
+        finish();
     }
 
     private boolean checkFields(Map<String, String> input) {

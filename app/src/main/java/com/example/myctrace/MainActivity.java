@@ -24,6 +24,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.myctrace.databinding.ActivityMainBinding;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,11 +33,15 @@ public class MainActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle drawerToggle;
 
+    //Firebase stuff
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(!TempUserLogin.loggedIn) { //if no login
+        mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser() == null) { //if no login
             Intent intent = new Intent(this, Login.class);
             //TODO:change to start activity without letting the user able to press back button to access stack history
             startActivity(intent);

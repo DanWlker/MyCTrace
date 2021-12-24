@@ -38,6 +38,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -189,10 +190,13 @@ public class ICVerification extends AppCompatActivity {
     }
 
     private void saveUserInfoInFirebase() {
+        Map<String, Object> userData = new HashMap<String, Object>();
+        userData.put("phone", input.get("phoneNumber"));
+        userData.put("icNumber", input.get("identificationNumber"));
+
         FirebaseDatabase.getInstance().getReference("user")
-                .child(input.get("identificationNumber"))
-                .child("phone")
-                .setValue(input.get("phoneNumber"))
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .updateChildren(userData)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -208,7 +212,7 @@ public class ICVerification extends AppCompatActivity {
     }
 
     private void redirectToLogin() {
-        //Redirect the user to main page
+        //Redirect the user to login page
         Intent intent = new Intent(ICVerification.this, Login.class);
         //to clear the register page, may need revision
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

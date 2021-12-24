@@ -297,5 +297,20 @@
 
         </com.google.android.material.card.MaterialCardView>
 
+        <TextView
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Miscellaneous:"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/blue_primary"
+            android:textSize="24dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/logout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/OrangeMaterialButton"
+            android:text="Log Out"/>
     </LinearLayout>
 </ScrollView>
