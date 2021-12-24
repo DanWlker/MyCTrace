@@ -14,6 +14,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myctrace.databinding.ActivityRegisterBinding;
@@ -28,6 +31,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,8 +42,15 @@ import java.util.Map;
  */
 public class Register extends AppCompatActivity {
 
-    //Firebase related stuff
-    private FirebaseAuth mAuth;
+
+    //Views that need to be initialized
+    TextView loginText;
+    Button registerButton;
+    EditText editTextIdentificationCard;
+    EditText editTextPassword;
+    EditText editTextRetypePassword;
+    EditText editTextPhoneNumber;
+    EditText editTextVerificationCode;
 
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
@@ -83,8 +95,14 @@ public class Register extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        //Firebase related stuff
-        mAuth = FirebaseAuth.getInstance();
+        //find views
+        loginText = findViewById(R.id.login_text);
+        registerButton = findViewById(R.id.register_button);
+        editTextIdentificationCard = findViewById(R.id.editTextIdentificationCard);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        editTextRetypePassword = findViewById(R.id.editTextRetypePassword);
+        editTextPhoneNumber = findViewById(R.id.editTextPhoneNumber);
+        editTextVerificationCode = findViewById(R.id.editTextVerificationCode);
 
     }
 
@@ -92,7 +110,7 @@ public class Register extends AppCompatActivity {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        findViewById(R.id.login_text).setOnClickListener(new View.OnClickListener() {
+        loginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Register.this, Login.class);
@@ -102,7 +120,7 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.register_button).setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onClickRegister();
@@ -117,11 +135,11 @@ public class Register extends AppCompatActivity {
 
     private void onClickRegister() {
         HashMap<String, String> input = new HashMap<String, String>();
-        input.put("identificationNumber", findViewById(R.id.editTextIdentificationCard).toString().trim());
-        input.put("password", findViewById(R.id.editTextPassword).toString().trim());
-        input.put("retypePassword", findViewById(R.id.editTextRetypePassword).toString().trim());
-        input.put("phoneNumber", findViewById(R.id.editTextPhoneNumber).toString().trim());
-        input.put("verificationCode", findViewById(R.id.editTextVerificationCode).toString().trim());
+        input.put("identificationNumber", editTextIdentificationCard.getText().toString().trim());
+        input.put("password", editTextPassword.getText().toString().trim());
+        input.put("retypePassword", editTextRetypePassword.getText().toString().trim());
+        input.put("phoneNumber", editTextPhoneNumber.getText().toString().trim());
+        input.put("verificationCode", editTextVerificationCode.getText().toString().trim());
 
         if(!checkFields(input)) {
             return;
@@ -132,36 +150,11 @@ public class Register extends AppCompatActivity {
         intent.putExtra("input", input);
         startActivity(intent);
 
-//        mAuth.createUserWithEmailAndPassword(
-//                input.get("identificationNumber") + "@myctrace.com",
-//                input.get("password")
-//        ).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if(task.isSuccessful()) {
-//                    // Sign in is successful
-//                    Log.d("Firebase", "createUserWithEmail: Success");
-//
-//                    // Create user in realtime database and save data in it
-//                    Log.d("Firebase", "Creating user in database");
-//                    FirebaseDatabase.getInstance().getReference("users")
-//                            .child(input.get("identificationNumber"))
-//                            .child("phoneNumber")
-//                            .setValue(input.get("phoneNumber"));
-//                } else {
-//                    //Sign in is unsuccessful
-//                    Log.w("Firebase", "createUserWithEmail: Fail", task.getException());
-//                    Toast.makeText(Register.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-//                    //TODO: updateUi(null);
-//                }
-//            }
-//        });
-
     }
 
     private boolean checkFields(Map<String, String> input) {
-
         for(String value: input.values()) {
+            Log.d("checkfields",value);
             if(value.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_LONG).show();
                 return false;
