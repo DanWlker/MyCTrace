@@ -42,15 +42,18 @@ public class ToknowFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.toknow_fragment, container, false);
 
+        //for action bar
         ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         actionBar.setTitle("To Know");
 
+        //link to database
         mbase = FirebaseDatabase.getInstance().getReference().child("news");
         FirebaseRecyclerOptions<NewsModel> options =
                 new FirebaseRecyclerOptions.Builder<NewsModel>()
                 .setQuery(mbase, NewsModel.class)
                 .build();
 
+        //setting up recycler view
         RecyclerView rv_news = view.findViewById(R.id.rv_news);
         NewsAdapter adapter = new NewsAdapter(options);
         rv_news.setAdapter(adapter);

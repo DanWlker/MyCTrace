@@ -51,15 +51,13 @@ public class ProfileFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        //profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
-        //final TextView textView = binding.tvName;
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        //binding layout components
         final MaterialCardView cvRisk = binding.cvRisk;
         final MaterialCardView cvVac = binding.cvVac;
         final ImageView btn_edit = binding.btnEditprofile;
-
         final TextView btn_showqr = binding.btnShowQR;
 
         cvRisk.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +89,7 @@ public class ProfileFragment extends Fragment {
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
                 // show the popup window
-                // which view you pass in doesn't matter, it is only used for the window tolken
+                // which view you pass in doesn't matter, it is only used for the window token
                 popupWindow.showAtLocation(root, Gravity.BOTTOM, 0, 0);
 
                 View container;
@@ -143,7 +141,7 @@ public class ProfileFragment extends Fragment {
                 // which view you pass in doesn't matter, it is only used for the window tolken
                 popupWindow.showAtLocation(root, Gravity.BOTTOM, 0, 0);
 
-                //bind elements of the window
+                //bind elements of the popup view
                 TextView tv_username = popupView.findViewById(R.id.tv_username);
                 TextView tv_id = popupView.findViewById(R.id.tv_id);
                 ImageView img_qr = popupView.findViewById(R.id.img_qr);
@@ -187,18 +185,12 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
-        /*profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        }); */
         return root;
     }
 
     private void generateQR(String str)
     {
+        //generate QR code based on given string
         QRGEncoder encoder = new QRGEncoder(str, null, QRGContents.Type.TEXT, 100);
         try {
             qrBitmap = encoder.encodeAsBitmap();

@@ -24,66 +24,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
-/*public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tv_title;
-        public MaterialCardView cv_url;
-        public ImageView img_cover;
-
-        public ViewHolder(View itemView){
-            super(itemView);
-            tv_title = itemView.findViewById(R.id.tv_title);
-            cv_url = itemView.findViewById(R.id.cv_url);
-            img_cover = itemView.findViewById(R.id.img_cover);
-        }
-    }
-
-    private Context mContext;
-    private List<NewsModel> mNews;
-
-
-    public NewsAdapter(List<NewsModel> news){
-        mNews = news;
-    }
-
-    @Override
-    public NewsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mContext = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-
-        View newsView = inflater.inflate(R.layout.news_card, parent, false);
-
-        ViewHolder viewHolder = new ViewHolder(newsView);
-        return viewHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position){
-        NewsModel news = mNews.get(position);
-
-        TextView textViewTitle = holder.tv_title;
-        textViewTitle.setText(news.getTitle());
-
-        ImageView imageCover = holder.img_cover;
-        Picasso.get().load(news.getImgUrl()).into(imageCover);
-
-        MaterialCardView cardViewURL = holder.cv_url;
-        cardViewURL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(news.getUrl()));
-                mContext.startActivity(browserIntent);
-            }
-        });
-    }
-
-    @Override
-    public int getItemCount() {
-        return mNews.size();
-    }
-} */
-
 public class NewsAdapter extends FirebaseRecyclerAdapter<
         NewsModel, NewsAdapter.NewsViewholder> {
 
@@ -110,9 +50,6 @@ public class NewsAdapter extends FirebaseRecyclerAdapter<
         Picasso.get().load(model.getImgUrl()).into(holder.imgCover);
     }
 
-    // Function to tell the class about the Card view (here
-    // "person.xml")in
-    // which the data will be shown
     @NonNull
     @Override
     public NewsViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
@@ -123,6 +60,7 @@ public class NewsAdapter extends FirebaseRecyclerAdapter<
     }
 
     class NewsViewholder extends RecyclerView.ViewHolder {
+
         TextView tvTitle;
         MaterialCardView cvUrl;
         ImageView imgCover;

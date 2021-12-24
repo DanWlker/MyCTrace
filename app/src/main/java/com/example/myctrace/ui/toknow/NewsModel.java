@@ -7,8 +7,10 @@ public class NewsModel {
 
     private String title, url, imgurl;
 
+    //empty constructor
     public NewsModel() {}
 
+    //getter methods
     public String getTitle(){
         return title;
     }
@@ -21,6 +23,7 @@ public class NewsModel {
         return imgurl;
     }
 
+    //setter methods
     public void setTitle(String title) {
         this.title = title;
     }
@@ -32,14 +35,4 @@ public class NewsModel {
     public void setImgUrl(String imgUrl) {
         this.imgurl = imgUrl;
     }
-
-    /*public static ArrayList<NewsModel> createNewsList(int n){
-        ArrayList<NewsModel> news = new ArrayList<NewsModel>();
-
-        for (int i = 1; i < n; ++i){
-            news.add(new NewsModel("This is news number : " + i));
-        }
-
-        return news;
-    } */
 }

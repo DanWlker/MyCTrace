@@ -1,15 +1,20 @@
 package com.example.myctrace.ui.home;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
@@ -42,39 +47,32 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
 
     TextView tvConfirmedCase, tvRecoveredCase, tvVacProgress;
-    MaterialCardView cvRisk, cvVac, cvTodo, cvToknow;
+    MaterialCardView cvTodo, cvToknow;
     LinearProgressIndicator pbVac;
+
+    ImageView riskIcon;
+    TextView riskTitle, riskUpdate, riskDate;
+    MaterialCardView cvRisk;
+
+    ImageView vacIcon;
+    TextView vacTitle, vacUpdate, vacDate;
+    MaterialCardView cvVac;
 
     private DatabaseReference mDatabase;
 
+    private String riskStatus = "low";
+    private String vacStatus = "firstdose";
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        //homeViewModel =
-                //new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        //final TextView textView = binding.tvUName;
-        cvRisk = binding.cvRisk;
-        cvVac = binding.cvVac;
-        cvTodo = binding.cvTodo;
-        cvToknow = binding.cvToknow;
-        tvConfirmedCase = binding.tvConfirmedCase;
-        tvRecoveredCase = binding.tvRecoveredCase;
-        tvVacProgress = binding.tvVacProgress;
-        pbVac = binding.pbVacProgress;
+        bindElements();
 
-        //mDatabase = FirebaseDatabase.getInstance().getReference();
-        //mDatabase.child("test").setValue("Hello");
-
-//        cvRisk.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(getActivity(), RiskAssessmentActivity.class);
-//                startActivity(i);
-//            }
-//        });
+        setRiskState(riskStatus);
+        setVacStatus(vacStatus);
 
         cvTodo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,16 +100,35 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //set statistics by getting data from API
         fetchCovidAPI();
         fetchVaccineAPI();
 
-        /*homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        }); */
         return root;
+    }
+
+    private void bindElements()
+    {
+        //risk elements
+        cvRisk = binding.cvRisk;
+        riskIcon = binding.riskIcon;
+        riskTitle = binding.riskTitle;
+        riskUpdate = binding.riskUpdated;
+        riskDate = binding.riskDate;
+
+        //vac elements
+        cvVac = binding.cvVac;
+        vacIcon = binding.vacIcon;
+        vacTitle = binding.vacTitle;
+        vacUpdate = binding.vacUpdated;
+        vacDate = binding.vacDate;
+
+        cvTodo = binding.cvTodo;
+        cvToknow = binding.cvToknow;
+        tvConfirmedCase = binding.tvConfirmedCase;
+        tvRecoveredCase = binding.tvRecoveredCase;
+        tvVacProgress = binding.tvVacProgress;
+        pbVac = binding.pbVacProgress;
     }
 
     private void fetchCovidAPI()
@@ -185,6 +202,42 @@ public class HomeFragment extends Fragment {
         );
 
         queue.add(stringRequest);
+    }
+
+    private void setRiskState(String riskstatus)
+    {
+        if (riskstatus == "high")
+        {
+            cvRisk.setCardBackgroundColor(getResources().getColor(R.color.orange_secondary));
+            riskIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle_orange));
+            riskTitle.setTextColor(getResources().getColor(R.color.orange_primary));
+            riskUpdate.setTextColor(getResources().getColor(R.color.orange_primary));
+            riskDate.setTextColor(getResources().getColor(R.color.orange_primary));
+        } else {
+            cvRisk.setCardBackgroundColor(getResources().getColor(R.color.blue_secondary));
+            riskIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle_blue));
+            riskTitle.setTextColor(getResources().getColor(R.color.blue_primary));
+            riskUpdate.setTextColor(getResources().getColor(R.color.blue_primary));
+            riskDate.setTextColor(getResources().getColor(R.color.blue_primary));
+        }
+    }
+
+    private void setVacStatus(String vacStatus)
+    {
+        if (vacStatus == "completed")
+        {
+            cvVac.setCardBackgroundColor(getResources().getColor(R.color.green_secondary));
+            vacIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_green));
+            vacTitle.setTextColor(getResources().getColor(R.color.green_primary));
+            vacUpdate.setTextColor(getResources().getColor(R.color.green_primary));
+            vacDate.setTextColor(getResources().getColor(R.color.green_primary));
+        } else {
+            cvVac.setCardBackgroundColor(getResources().getColor(R.color.orange_secondary));
+            vacIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_orange));
+            vacTitle.setTextColor(getResources().getColor(R.color.orange_primary));
+            vacUpdate.setTextColor(getResources().getColor(R.color.orange_primary));
+            vacDate.setTextColor(getResources().getColor(R.color.orange_primary));
+        }
     }
 
     @Override
