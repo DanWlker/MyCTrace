@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/vaccine_popout">
 
     <com.google.android.material.card.MaterialCardView
@@ -33,6 +34,7 @@
                 android:layout_gravity="center">
 
                 <ImageView
+                    android:id="@+id/img_qr"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@color/grey_one"/>
@@ -55,6 +57,7 @@
                     android:layout_gravity="center">
 
                     <TextView
+                        android:id="@+id/tv_username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Username"
@@ -63,6 +66,7 @@
                         android:textColor="@color/green_primary"/>
 
                     <TextView
+                        android:id="@+id/tv_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="999999-99-9999"

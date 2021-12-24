@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.myctrace.R;
 
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ComponentsPopUpAddUser#newInstance} factory method to
