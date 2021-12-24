@@ -18,12 +18,17 @@ import com.example.myctrace.databinding.ActivityLoginBinding;
 import com.example.myctrace.R;
 import com.example.myctrace.ui.register.Register;
 import com.example.myctrace.utilities.TempUserLogin;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 public class Login extends AppCompatActivity {
+
+    //Firebase related stuff
+    private FirebaseAuth mAuth;
 
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
@@ -65,8 +70,17 @@ public class Login extends AppCompatActivity {
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //Firebase related stuff
+        mAuth = FirebaseAuth.getInstance();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //check if user is signed in
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -92,9 +106,6 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
 
         // Trigger the initial hide() shortly after the activity has been
         // created, to briefly hint to the user that UI controls

@@ -2,6 +2,7 @@ package com.example.myctrace.ui.register;
 
 import android.annotation.SuppressLint;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,21 +10,35 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
+import android.widget.Toast;
 
 import com.example.myctrace.databinding.ActivityRegisterBinding;
 import com.example.myctrace.R;
 import com.example.myctrace.ui.icverification.ICVerification;
 import com.example.myctrace.ui.login.Login;
 import com.example.myctrace.ui.scanqr.ScanQr;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 public class Register extends AppCompatActivity {
+
+    //Firebase related stuff
+    private FirebaseAuth mAuth;
 
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
@@ -68,6 +83,9 @@ public class Register extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        //Firebase related stuff
+        mAuth = FirebaseAuth.getInstance();
+
     }
 
     @Override
@@ -87,9 +105,7 @@ public class Register extends AppCompatActivity {
         findViewById(R.id.register_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Register.this, ICVerification.class);
-                //TODO:change to start activity without letting the user able to press back button to access stack history
-                startActivity(intent);
+                onClickRegister();
             }
         });
 
@@ -97,6 +113,72 @@ public class Register extends AppCompatActivity {
         // created, to briefly hint to the user that UI controls
         // are available.
         delayedHide(100);
+    }
+
+    private void onClickRegister() {
+        HashMap<String, String> input = new HashMap<String, String>();
+        input.put("identificationNumber", findViewById(R.id.editTextIdentificationCard).toString().trim());
+        input.put("password", findViewById(R.id.editTextPassword).toString().trim());
+        input.put("retypePassword", findViewById(R.id.editTextRetypePassword).toString().trim());
+        input.put("phoneNumber", findViewById(R.id.editTextPhoneNumber).toString().trim());
+        input.put("verificationCode", findViewById(R.id.editTextVerificationCode).toString().trim());
+
+        if(!checkFields(input)) {
+            return;
+        }
+
+        //launch next screen and pass the checked data to the ic verification screen
+        Intent intent = new Intent(Register.this, ICVerification.class);
+        intent.putExtra("input", input);
+        startActivity(intent);
+
+//        mAuth.createUserWithEmailAndPassword(
+//                input.get("identificationNumber") + "@myctrace.com",
+//                input.get("password")
+//        ).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+//                if(task.isSuccessful()) {
+//                    // Sign in is successful
+//                    Log.d("Firebase", "createUserWithEmail: Success");
+//
+//                    // Create user in realtime database and save data in it
+//                    Log.d("Firebase", "Creating user in database");
+//                    FirebaseDatabase.getInstance().getReference("users")
+//                            .child(input.get("identificationNumber"))
+//                            .child("phoneNumber")
+//                            .setValue(input.get("phoneNumber"));
+//                } else {
+//                    //Sign in is unsuccessful
+//                    Log.w("Firebase", "createUserWithEmail: Fail", task.getException());
+//                    Toast.makeText(Register.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+//                    //TODO: updateUi(null);
+//                }
+//            }
+//        });
+
+    }
+
+    private boolean checkFields(Map<String, String> input) {
+
+        for(String value: input.values()) {
+            if(value.isEmpty()) {
+                Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        }
+
+        if(input.get("password").length() < 6) {
+            Toast.makeText(this, "Password Length must be larger than 6.", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        if(!input.get("password").equals(input.get("retypePassword"))) {
+            Toast.makeText(this, "Two password fields do not match.", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
     }
 
 

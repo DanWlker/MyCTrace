@@ -64,19 +64,34 @@
             android:layout_width="0dp"
             android:layout_height="30dp" />
 
+        <EditText
+            android:id="@+id/editTextPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:drawableEnd="@drawable/ic_phone"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="30dp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <EditText
-                android:id="@+id/editTextPhoneNumber"
+                android:id="@+id/editTextVerificationCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Phone Number"
-                android:inputType="phone"
+                android:hint="Verification Code"
+                android:inputType="text"
                 android:layout_weight="1"
-                android:drawableEnd="@drawable/ic_phone"/>
+                android:drawableEnd="@drawable/ic_check"
+                />
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
@@ -90,7 +105,7 @@
 
         <Space
             android:layout_width="0dp"
-            android:layout_height="70dp"/>
+            android:layout_height="50dp"/>
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="250dp"
