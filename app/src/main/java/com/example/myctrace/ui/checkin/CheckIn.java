@@ -19,6 +19,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -35,12 +37,17 @@ import com.example.myctrace.ui.checkinhistory.CheckInHistoryFragment;
 import com.example.myctrace.ui.login.Login;
 import com.example.myctrace.ui.register.Register;
 import com.example.myctrace.ui.scanqr.ScanQr;
+import com.example.myctrace.ui.toknow.NewsAdapter;
+import com.example.myctrace.ui.toknow.NewsModel;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
 import java.time.Instant;
+import java.util.ArrayList;
 
 public class CheckIn extends Fragment {
 
@@ -48,6 +55,10 @@ public class CheckIn extends Fragment {
 
     // to handle image callback
     ActivityResultLauncher<Intent> launchScanQRActivity;
+
+    //Firebase stuff
+    //ArrayList<NewsModel> news;
+    DatabaseReference mbase;
 
     public static CheckIn newInstance() {
         return new CheckIn();
@@ -59,6 +70,7 @@ public class CheckIn extends Fragment {
         launchScanQRActivity = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if(result.getResultCode() == RESULT_OK) {
@@ -110,9 +122,6 @@ public class CheckIn extends Fragment {
         });
 
         Button buttonSelfCheckIn = view.findViewById(R.id.btn_self_check_in);
-
-
-
         buttonSelfCheckIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,6 +130,25 @@ public class CheckIn extends Fragment {
             }
         });
 
+        loadRecentCheckIns(view);
+
+    }
+
+    private void loadRecentCheckIns(View view) {
+        mbase = FirebaseDatabase.getInstance().getReference().child("news");
+        FirebaseRecyclerOptions<//modal class> options =
+                new FirebaseRecyclerOptions.Builder<//modal class>()
+                        .setQuery(mbase, //modal class)
+                        .orderByKey()
+                        .limitToLast(5)
+                      //  .endAt(endKey);
+                        .build();
+
+        RecyclerView rv_news = view.findViewById(R.id.rv_news);
+        NewsAdapter adapter = new NewsAdapter(options);
+        rv_news.setAdapter(adapter);
+        rv_news.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter.startListening();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
