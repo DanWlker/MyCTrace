@@ -6,12 +6,14 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -33,8 +35,12 @@ import com.example.myctrace.ui.checkinhistory.CheckInHistoryFragment;
 import com.example.myctrace.ui.login.Login;
 import com.example.myctrace.ui.register.Register;
 import com.example.myctrace.ui.scanqr.ScanQr;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
+
+import java.time.Instant;
 
 public class CheckIn extends Fragment {
 
@@ -117,9 +123,15 @@ public class CheckIn extends Fragment {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void onSelfScanQR(String data) {
         Log.d("scanqrdebug", "I now know the value is: " + data);
-        //upload
+        //upload onto firebase
+        FirebaseDatabase.getInstance().getReference("user")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("checkIns")
+                .child(String.valueOf(Instant.now().getEpochSecond()))
+                .setValue(data);
     }
 
 
