@@ -16,16 +16,16 @@
         android:orientation="vertical"
         android:paddingVertical="30dp">
 
-        <EditText
-            android:id="@+id/editTextLocationName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Search Location"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:drawableEnd="@drawable/ic_map_pin"
-            android:drawableTint="@color/black"/>
+<!--        <EditText-->
+<!--            android:id="@+id/editTextLocationName"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:ems="10"-->
+<!--            android:hint="Search Location"-->
+<!--            android:inputType="text"-->
+<!--            android:minHeight="48dp"-->
+<!--            android:drawableEnd="@drawable/ic_map_pin"-->
+<!--            android:drawableTint="@color/black"/>-->
 
         <Space
             android:layout_width="0dp"
@@ -40,37 +40,38 @@
             android:inputType="date"
             android:minHeight="48dp"
             android:drawableEnd="@drawable/ic_calendar"
-            android:drawableTint="@color/black"/>
+            android:drawableTint="@color/black"
+            android:focusable="false"/>
 
         <Space
             android:layout_width="0dp"
             android:layout_height="10dp"></Space>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sort by: "
-                android:textSize="18sp"></TextView>
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="0dp"></Space>
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Sort by: "-->
+<!--                android:textSize="18sp"></TextView>-->
+<!--            <Space-->
+<!--                android:layout_width="10dp"-->
+<!--                android:layout_height="0dp"></Space>-->
 
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Latest"
-                app:icon="@android:drawable/ic_menu_more"
-                app:iconSize="18dp"
-                app:iconGravity="end"
-                app:iconTint="@color/green_primary"
-                android:textSize="15sp"
-                style="@style/GreenMaterialButton"/>
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Latest"-->
+<!--                app:icon="@android:drawable/ic_menu_more"-->
+<!--                app:iconSize="18dp"-->
+<!--                app:iconGravity="end"-->
+<!--                app:iconTint="@color/green_primary"-->
+<!--                android:textSize="15sp"-->
+<!--                style="@style/GreenMaterialButton"/>-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
     </LinearLayout>
     <ScrollView
