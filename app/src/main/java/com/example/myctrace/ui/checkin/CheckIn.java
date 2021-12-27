@@ -143,7 +143,6 @@ public class CheckIn extends Fragment {
                 launchScanQRActivity.launch(scanQR);
             }
         });
-
         loadRecentCheckIns(view);
 
     }
