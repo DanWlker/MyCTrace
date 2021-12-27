@@ -48,8 +48,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class CheckIn extends Fragment {
 
@@ -151,6 +155,7 @@ public class CheckIn extends Fragment {
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(mLayoutManager);
 
 
@@ -182,14 +187,21 @@ public class CheckIn extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void onSelfScanQR(String data) {
         Log.d("scanqrdebug", "I now know the value is: " + data);
+
+        Long currentEpochSecond = Instant.now().getEpochSecond();
+        Date currentDateTime = new Date(currentEpochSecond*1000);
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
+        format.setTimeZone(TimeZone.getTimeZone("Asia/Kuala_Lumpur"));
+        String formatted = format.format(currentDateTime);
+
         //upload onto firebase
-        mbase.child("Ref"+ String.valueOf(Instant.now().getEpochSecond()))
+        mbase.child(formatted)
                 .child("location")
                 .setValue(data);
 
-        mbase.child("Ref"+ String.valueOf(Instant.now().getEpochSecond()))
+        mbase.child(formatted)
                 .child("dateTime")
-                .setValue(Instant.now().getEpochSecond());
+                .setValue(currentEpochSecond);
     }
 
 

@@ -24,8 +24,8 @@ public class CheckInLocationModal {
     }
 
     public void setDateTime(Long dateTime) {
-        Date date = new Date(dateTime);
-        DateFormat format = new SimpleDateFormat("dd/mm/yyyy hh:mm");
+        Date date = new Date(dateTime*1000);
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         format.setTimeZone(TimeZone.getTimeZone("Asia/Kuala_Lumpur"));
         String formatted = format.format(date);
         this.dateTime = formatted;
