@@ -87,49 +87,14 @@
         android:textSize="25dp"
         android:layout_margin="15dp"
         android:layout_weight="0"/>
-    <ScrollView
-        android:layout_width="match_parent"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/checkInLocationRecycler"
+        android:layout_width="320dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        >
-        <LinearLayout
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:layout_gravity="center_horizontal">
-
-            <fragment
-                android:name="com.example.myctrace.ui.components.ComponentLocationCard"
-                android:id="@+id/fooFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"/>
-
-            <fragment
-                android:name="com.example.myctrace.ui.components.ComponentLocationCard"
-                android:id="@+id/fooFragment2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"/>
-
-            <fragment
-                android:name="com.example.myctrace.ui.components.ComponentLocationCard"
-                android:id="@+id/fooFragment3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"/>
-
-            <fragment
-                android:name="com.example.myctrace.ui.components.ComponentLocationCard"
-                android:id="@+id/fooFragment4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"/>
-
-        </LinearLayout>
-
-    </ScrollView>
+        android:layout_gravity="center_horizontal"
+        />
 
     <TextView
         android:layout_width="match_parent"

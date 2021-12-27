@@ -39,6 +39,8 @@ import com.example.myctrace.ui.register.Register;
 import com.example.myctrace.ui.scanqr.ScanQr;
 import com.example.myctrace.ui.toknow.NewsAdapter;
 import com.example.myctrace.ui.toknow.NewsModel;
+import com.example.myctrace.uireusablecomponents.checkInLocation.CheckInLocationAdapter;
+import com.example.myctrace.uireusablecomponents.checkInLocation.CheckInLocationModal;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -57,8 +59,9 @@ public class CheckIn extends Fragment {
     ActivityResultLauncher<Intent> launchScanQRActivity;
 
     //Firebase stuff
-    //ArrayList<NewsModel> news;
     DatabaseReference mbase;
+    private RecyclerView recyclerView;
+    CheckInLocationAdapter adapter;
 
     public static CheckIn newInstance() {
         return new CheckIn();
@@ -92,6 +95,13 @@ public class CheckIn extends Fragment {
 
         // TODO: Use the ViewModel
         View view = getView();
+
+        //Firebase stuff
+        mbase = FirebaseDatabase.getInstance()
+                .getReference("user")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("checkIns");
+
 
         TextView textViewMore = view.findViewById(R.id.view_more);
         textViewMore.setOnClickListener(new View.OnClickListener()
@@ -135,31 +145,51 @@ public class CheckIn extends Fragment {
     }
 
     private void loadRecentCheckIns(View view) {
-        mbase = FirebaseDatabase.getInstance().getReference().child("news");
-        FirebaseRecyclerOptions<//modal class> options =
-                new FirebaseRecyclerOptions.Builder<//modal class>()
-                        .setQuery(mbase, //modal class)
-                        .orderByKey()
-                        .limitToLast(5)
-                      //  .endAt(endKey);
-                        .build();
+        //Firebase stuff
+        recyclerView = view.findViewById(R.id.checkInLocationRecycler);
 
-        RecyclerView rv_news = view.findViewById(R.id.rv_news);
-        NewsAdapter adapter = new NewsAdapter(options);
-        rv_news.setAdapter(adapter);
-        rv_news.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        mLayoutManager.setReverseLayout(true);
+        recyclerView.setLayoutManager(mLayoutManager);
+
+
+        FirebaseRecyclerOptions<CheckInLocationModal> options =
+                new FirebaseRecyclerOptions.Builder<CheckInLocationModal>()
+                        .setIndexedQuery(mbase.orderByKey().limitToLast(4), mbase.getRef(), CheckInLocationModal.class)
+                    //.setQuery(mbase, CheckInLocationModal.class)
+                    .build();
+
+        adapter = new CheckInLocationAdapter(options);
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
         adapter.startListening();
+    }
+
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        adapter.stopListening();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void onSelfScanQR(String data) {
         Log.d("scanqrdebug", "I now know the value is: " + data);
         //upload onto firebase
-        FirebaseDatabase.getInstance().getReference("user")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("checkIns")
-                .child(String.valueOf(Instant.now().getEpochSecond()))
+        mbase.child("Ref"+ String.valueOf(Instant.now().getEpochSecond()))
+                .child("location")
                 .setValue(data);
+
+        mbase.child("Ref"+ String.valueOf(Instant.now().getEpochSecond()))
+                .child("dateTime")
+                .setValue(Instant.now().getEpochSecond());
     }
 
 
