@@ -5,13 +5,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_url"
+        app:cardUseCompatPadding="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="10dp"
+        app:cardElevation="7dp"
         app:cardCornerRadius="15dp"
-        android:layout_margin="14dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">>
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,6 +29,7 @@
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec arcu ac quam mollis venenatis ut et nisi."/>
 
             <ImageView
+                android:id="@+id/img_cover"
                 android:layout_width="match_parent"
                 android:layout_height="225dp"
                 android:src="@drawable/defaultnewscover"

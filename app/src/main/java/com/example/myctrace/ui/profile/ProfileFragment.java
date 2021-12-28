@@ -4,8 +4,12 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -26,22 +30,34 @@ import com.example.myctrace.ui.editprofile.EditProfileActivity;
 import com.example.myctrace.ui.riskassesment.RiskAssessmentActivity;
 import com.example.myctrace.databinding.FragmentProfileBinding;
 import com.google.android.material.card.MaterialCardView;
+import com.google.zxing.WriterException;
+
+import androidmads.library.qrgenearator.QRGContents;
+import androidmads.library.qrgenearator.QRGEncoder;
 
 public class ProfileFragment extends Fragment {
 
-    private ProfileViewModel profileViewModel;
+    //private ProfileViewModel profileViewModel;
     private FragmentProfileBinding binding;
+
+    Bitmap qrBitmap;
+    private String username = "Default Username";
+    private String idNum = "123456121234";
+    private String phoneNum;
+    private String riskStatus;
+    private String vacStatus;
+    private String currLocation;
+    private String profilePicURL;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        //binding layout components
         final MaterialCardView cvRisk = binding.cvRisk;
         final MaterialCardView cvVac = binding.cvVac;
         final ImageView btn_edit = binding.btnEditprofile;
-        final TextView textView = binding.tvName;
         final TextView btn_showqr = binding.btnShowQR;
 
         cvRisk.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +89,7 @@ public class ProfileFragment extends Fragment {
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
                 // show the popup window
-                // which view you pass in doesn't matter, it is only used for the window tolken
+                // which view you pass in doesn't matter, it is only used for the window token
                 popupWindow.showAtLocation(root, Gravity.BOTTOM, 0, 0);
 
                 View container;
@@ -125,6 +141,17 @@ public class ProfileFragment extends Fragment {
                 // which view you pass in doesn't matter, it is only used for the window tolken
                 popupWindow.showAtLocation(root, Gravity.BOTTOM, 0, 0);
 
+                //bind elements of the popup view
+                TextView tv_username = popupView.findViewById(R.id.tv_username);
+                TextView tv_id = popupView.findViewById(R.id.tv_id);
+                ImageView img_qr = popupView.findViewById(R.id.img_qr);
+
+                //Set the fields accordingly
+                tv_username.setText("Plug in the username here");
+                tv_id.setText("This is an id");
+                generateQR("990011223344");
+                img_qr.setImageBitmap(qrBitmap);
+
                 View container;
 
                 if (popupWindow.getBackground() == null) {
@@ -158,14 +185,18 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
-        /*profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        }); */
         return root;
+    }
+
+    private void generateQR(String str)
+    {
+        //generate QR code based on given string
+        QRGEncoder encoder = new QRGEncoder(str, null, QRGContents.Type.TEXT, 100);
+        try {
+            qrBitmap = encoder.encodeAsBitmap();
+        } catch (WriterException e) {
+            Log.e("Encoder", e.toString());
+        }
     }
 
     @Override

@@ -5,25 +5,34 @@ import java.util.ArrayList;
 
 public class NewsModel {
 
-    public String mtitle;
+    private String title, url, imgurl;
 
-    public NewsModel(String title){
-        mtitle = title;
-    }
+    //empty constructor
+    public NewsModel() {}
 
+    //getter methods
     public String getTitle(){
-        return mtitle;
+        return title;
     }
 
-    private static int lastNewsId = 0;
+    public String getUrl(){
+        return url;
+    }
 
-    public static ArrayList<NewsModel> createNewsList(int n){
-        ArrayList<NewsModel> news = new ArrayList<NewsModel>();
+    public String getImgUrl(){
+        return imgurl;
+    }
 
-        for (int i = 1; i < n; ++i){
-            news.add(new NewsModel("This is news number : " + i));
-        }
+    //setter methods
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-        return news;
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgurl = imgUrl;
     }
 }

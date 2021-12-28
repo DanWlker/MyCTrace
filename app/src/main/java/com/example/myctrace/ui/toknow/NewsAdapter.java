@@ -1,57 +1,77 @@
 package com.example.myctrace.ui.toknow;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myctrace.R;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.card.MaterialCardView;
+import com.squareup.picasso.Picasso;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
+public class NewsAdapter extends FirebaseRecyclerAdapter<
+        NewsModel, NewsAdapter.NewsViewholder> {
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tv_title;
+    Context mContext;
 
-        public ViewHolder(View itemView){
+    public NewsAdapter(@NonNull FirebaseRecyclerOptions<NewsModel> options)
+    {
+        super(options);
+    }
+
+    @Override
+    protected void onBindViewHolder(@NonNull NewsViewholder holder, int position, @NonNull NewsModel model)
+    {
+        holder.tvTitle.setText(model.getTitle());
+
+        holder.cvUrl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(model.getUrl()));
+                mContext.startActivity(browserIntent);
+            }
+        });
+
+        Picasso.get().load(model.getImgUrl()).into(holder.imgCover);
+    }
+
+    @NonNull
+    @Override
+    public NewsViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    {
+        mContext = parent.getContext();
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_card, parent, false);
+        return new NewsAdapter.NewsViewholder(view);
+    }
+
+    class NewsViewholder extends RecyclerView.ViewHolder {
+
+        TextView tvTitle;
+        MaterialCardView cvUrl;
+        ImageView imgCover;
+
+        public NewsViewholder(@NonNull View itemView)
+        {
             super(itemView);
-            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
+
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            cvUrl = itemView.findViewById(R.id.cv_url);
+            imgCover = itemView.findViewById(R.id.img_cover);
         }
     }
-
-    private List<NewsModel> mNews;
-
-    public NewsAdapter(List<NewsModel> news){
-        mNews = news;
-    }
-
-    @Override
-    public NewsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-
-        View newsView = inflater.inflate(R.layout.news_card, parent, false);
-
-        ViewHolder viewHolder = new ViewHolder(newsView);
-        return viewHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position){
-        NewsModel news = mNews.get(position);
-
-        TextView textViewTitle = holder.tv_title;
-        textViewTitle.setText(news.getTitle());
-    }
-
-    @Override
-    public int getItemCount() {
-        return mNews.size();
-    }
-
-
 }

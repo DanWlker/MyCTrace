@@ -38,6 +38,7 @@
         <entry key="..\:/Users/danie/AndroidStudioProjects/MyCTrace/app/src/main/res/menu/main.xml" value="0.2" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/MyCTrace/app/src/main/res/menu/nav_menu.xml" value="0.264" />
         <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.36302083333333335" />
+        <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/drawable-v24/ic_user_orange.xml" value="0.390625" />
         <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/drawable/ic_alert_circle.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/drawable/ic_alert_circle_blue.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.36302083333333335" />
@@ -69,6 +70,11 @@
         <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/layout/check_in_fragment.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/layout/content_main.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/layout/edit_profile_fragment.xml" value="0.346875" />
+        <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/layout/fragment_component_clickable_user_photo.xml" value="0.3625" />
+        <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/layout/fragment_component_location_card.xml" value="0.3625" />
+        <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/layout/fragment_component_user_qr_pop_up.xml" value="0.19655797101449277" />
+        <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/layout/fragment_component_vaccine_pop_up.xml" value="0.19655797101449277" />
+        <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/layout/fragment_components_pop_up_add_user.xml" value="0.19655797101449277" />
         <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/layout/fragment_dashboard.xml" value="0.346875" />
         <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/iCha0/Desktop/Mobile - Git/MyCTrace/app/src/main/res/layout/fragment_notifications.xml" value="0.346875" />
