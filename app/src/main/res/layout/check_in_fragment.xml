@@ -5,13 +5,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.checkin.CheckIn"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:outlineAmbientShadowColor="@color/black"
-        app:cardElevation="20dp"
+        app:cardElevation="10dp"
         android:id="@+id/top_card"
         android:layout_weight="0">
         <LinearLayout
@@ -19,117 +20,99 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center_horizontal"
-            android:paddingVertical="40dp">
+            android:paddingVertical="40dp"
+            android:paddingHorizontal="28dp">
             <LinearLayout
-                android:layout_width="320dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginVertical="5dp">
                 <TextView
+                    android:id="@+id/txtViewVaccination"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fully Vaccinated"
+                    android:text="Loading..."
                     android:textSize="23sp"
-                    android:textColor="@color/green_primary">
+                    android:textColor="@color/blue_primary">
                 </TextView>
+
                 <TextView
+                    android:id="@+id/txtViewVaccinationDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Certificate issued: 24 September 2021"
-                    android:textColor="@color/green_primary">
-                </TextView>
-                <ProgressBar
+                    android:text="Vaccination Date: Loading..."
+                    android:textColor="@color/blue_primary"></TextView>
+
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/progressBarVaccination"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:indeterminate="false"
-                    android:max="100"
-                    android:progress="100"
-                    >
+                    app:trackThickness="5dp"
+                    app:trackCornerRadius="2dp"
+                    app:indicatorColor="@color/blue_secondary"
+                    />
 
-                </ProgressBar>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="320dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginVertical="5dp">
                 <TextView
+                    android:id="@+id/txtViewRisk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Low Risk"
+                    android:text="Loading..."
                     android:textSize="23sp"
-                    android:textColor="@color/green_primary"
+                    android:textColor="@color/blue_primary"
                     >
                 </TextView>
                 <TextView
+                    android:id="@+id/txtViewRiskDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Health Risk Assessment: 17 September 2021"
-                    android:textColor="@color/green_primary">
-
+                    android:text="Health Risk Assessment: Loading"
+                    android:textColor="@color/blue_primary">
                 </TextView>
-                <ProgressBar
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                    android:indeterminate="false"
-                    android:max="100"
-                    android:progress="100">
+<!--                <ProgressBar-->
+<!--                    android:id="@+id/progressBarRisk"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"-->
+<!--                    android:indeterminate="false"-->
+<!--                    android:max="100"-->
+<!--                    android:progress="100">-->
 
-                </ProgressBar>
+<!--                </ProgressBar>-->
             </LinearLayout>
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Recent Check Ins"
-        android:textSize="25dp"
-        android:layout_margin="15dp"
-        android:layout_weight="0"/>
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        >
-        <LinearLayout
-            android:layout_width="320dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="28dp">
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:layout_gravity="center_horizontal">
+            android:text="Recent Check Ins"
+            android:textSize="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="0"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/checkInLocationRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1" />
+    </LinearLayout>
 
-            <fragment
-                android:name="com.example.myctrace.ui.components.ComponentLocationCard"
-                android:id="@+id/fooFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"/>
-
-            <fragment
-                android:name="com.example.myctrace.ui.components.ComponentLocationCard"
-                android:id="@+id/fooFragment2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"/>
-
-            <fragment
-                android:name="com.example.myctrace.ui.components.ComponentLocationCard"
-                android:id="@+id/fooFragment3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"/>
-
-            <fragment
-                android:name="com.example.myctrace.ui.components.ComponentLocationCard"
-                android:id="@+id/fooFragment4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"/>
-
-        </LinearLayout>
-
-    </ScrollView>
 
     <TextView
         android:layout_width="match_parent"

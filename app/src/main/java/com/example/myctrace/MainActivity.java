@@ -4,26 +4,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.example.myctrace.ui.icverification.ICVerification;
 import com.example.myctrace.ui.login.Login;
-import com.example.myctrace.ui.register.Register;
-import com.example.myctrace.utilities.TempUserLogin;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.myctrace.databinding.ActivityMainBinding;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,11 +27,15 @@ public class MainActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle drawerToggle;
 
+    //Firebase stuff
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(!TempUserLogin.loggedIn) { //if no login
+        mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser() == null) { //if no login
             Intent intent = new Intent(this, Login.class);
             //TODO:change to start activity without letting the user able to press back button to access stack history
             startActivity(intent);

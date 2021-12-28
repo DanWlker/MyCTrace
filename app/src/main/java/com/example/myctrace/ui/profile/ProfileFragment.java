@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -25,12 +26,15 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.myctrace.MainActivity;
 import com.example.myctrace.R;
 import com.example.myctrace.ui.editprofile.EditProfileActivity;
+import com.example.myctrace.ui.login.Login;
 import com.example.myctrace.ui.riskassesment.RiskAssessmentActivity;
 import com.example.myctrace.databinding.FragmentProfileBinding;
 import com.google.android.material.card.MaterialCardView;
 import com.google.zxing.WriterException;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
@@ -59,6 +63,18 @@ public class ProfileFragment extends Fragment {
         final MaterialCardView cvVac = binding.cvVac;
         final ImageView btn_edit = binding.btnEditprofile;
         final TextView btn_showqr = binding.btnShowQR;
+        final Button logoutButton = binding.logoutButton;
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                //TODO:change to start activity without letting the user able to press back button to access stack history
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
 
         cvRisk.setOnClickListener(new View.OnClickListener() {
             @Override

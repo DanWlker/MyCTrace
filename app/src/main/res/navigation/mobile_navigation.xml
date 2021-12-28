@@ -45,7 +45,7 @@
     <fragment
         android:id="@+id/search_test_location"
         android:name="com.example.myctrace.ui.searchtestlocation.SearchTestLocation"
-        android:label="Search Test Location"
+        android:label="Search PPV Location"
         tools:layout="@layout/search_test_location_fragment" />
 
 </navigation>

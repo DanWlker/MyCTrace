@@ -29,34 +29,14 @@
             android:layout_height="220dp"
             app:cardCornerRadius="30dp"
             app:strokeColor="@color/grey_one"
-            app:strokeWidth="5dp"
+            app:strokeWidth="6dp"
             app:cardElevation="0dp"
             >
-            <LinearLayout
+            <ImageView
+                android:id="@+id/imageViewIdentificationCard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center">
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    app:cardCornerRadius="10dp"
-                    app:strokeColor="@color/grey_one"
-                    app:strokeWidth="5dp"
-                    app:cardElevation="0dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center">
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@android:drawable/ic_input_add"
-                            app:tint="@color/grey_one"
-                            />
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
+                android:src="@drawable/ic_plus_square" />
         </com.google.android.material.card.MaterialCardView>
         <Space
             android:layout_width="0dp"
