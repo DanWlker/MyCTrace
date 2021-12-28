@@ -103,6 +103,7 @@
                             android:gravity="center">
 
                             <RadioButton
+                                android:id="@+id/rb_q1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginHorizontal="35dp"
@@ -112,7 +113,6 @@
                                 android:textSize="24dp" />
 
                             <RadioButton
-                                android:id="@+id/rb_q1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginHorizontal="35dp"
@@ -199,6 +199,7 @@
                             android:gravity="center">
 
                             <RadioButton
+                                android:id="@+id/rb_q2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginHorizontal="35dp"
@@ -208,7 +209,6 @@
                                 android:textSize="24dp" />
 
                             <RadioButton
-                                android:id="@+id/rb_q2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginHorizontal="35dp"
@@ -261,6 +261,7 @@
                             android:gravity="center">
 
                             <RadioButton
+                                android:id="@+id/rb_q3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginHorizontal="35dp"
@@ -270,7 +271,6 @@
                                 android:textSize="24dp" />
 
                             <RadioButton
-                                android:id="@+id/rb_q3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginHorizontal="35dp"

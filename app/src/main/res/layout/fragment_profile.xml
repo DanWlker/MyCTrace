@@ -23,13 +23,20 @@
                 android:layout_width="96dp"
                 android:layout_height="96dp"
                 android:layout_marginHorizontal="15dp"
-                app:cardBackgroundColor="#DDDDDD"
+                app:cardBackgroundColor="@color/blue_secondary"
                 app:cardCornerRadius="48dp"
+                app:cardElevation="0dp"
                 app:contentPadding="10dp">
-                <ImageView
+                <TextView
+                    android:id="@+id/icon_profile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_baseline_person_24"/>
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:text="U"
+                    android:textAllCaps="true"
+                    android:textSize="48dp"
+                    android:textColor="@color/blue_primary"/>
             </androidx.cardview.widget.CardView>
 
             <LinearLayout
@@ -41,7 +48,7 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/tv_name"
+                    android:id="@+id/tv_uname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/blue_primary"
@@ -59,7 +66,7 @@
                     android:textSize="12dp" />
 
                 <TextView
-                    android:id="@+id/tv_id"
+                    android:id="@+id/tv_ic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -113,6 +120,7 @@
                 android:orientation="horizontal" >
 
                 <ImageView
+                    android:id="@+id/risk_icon"
                     android:layout_marginVertical="10dp"
                     android:layout_marginHorizontal="5dp"
                     android:layout_width="24dp"
@@ -128,7 +136,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_riskStatus"
+                        android:id="@+id/risk_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Risk Status"
@@ -137,14 +145,15 @@
                         android:textSize="16dp" />
 
                     <TextView
+                        android:id="@+id/risk_updated"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12dp"
                         android:textColor="@color/blue_primary"
-                        android:text="Health Risk Assessment:" />
+                        android:text="Last Updated On:" />
 
                     <TextView
-                        android:id="@+id/tv_riskLastUpdated"
+                        android:id="@+id/risk_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12dp"
@@ -179,6 +188,7 @@
                 android:orientation="horizontal" >
 
                 <ImageView
+                    android:id="@+id/vac_icon"
                     android:layout_marginVertical="10dp"
                     android:layout_marginHorizontal="5dp"
                     android:layout_width="24dp"
@@ -194,7 +204,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_vacStatus"
+                        android:id="@+id/vac_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Vaccination Status"
@@ -203,14 +213,15 @@
                         android:textSize="16dp" />
 
                     <TextView
+                        android:id="@+id/vac_updated"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12dp"
                         android:textColor="@color/green_primary"
-                        android:text="Digital Certificate Issued:" />
+                        android:text="Last Updated On: " />
 
                     <TextView
-                        android:id="@+id/tv_vacCertDate"
+                        android:id="@+id/vac_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12dp"
@@ -239,6 +250,7 @@
             android:textSize="24dp" />
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_state"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -253,6 +265,7 @@
                 android:orientation="horizontal" >
 
                 <ImageView
+                    android:id="@+id/stateIcon"
                     android:layout_marginVertical="10dp"
                     android:layout_marginHorizontal="5dp"
                     android:layout_width="24dp"
@@ -268,7 +281,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_location"
+                        android:id="@+id/stateTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Current State"
@@ -277,6 +290,7 @@
                         android:textSize="16dp" />
 
                     <TextView
+                        android:id="@+id/stateUpdated"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12dp"
@@ -284,7 +298,7 @@
                         android:text="Location Risk:" />
 
                     <TextView
-                        android:id="@+id/tv_locationRisk"
+                        android:id="@+id/stateRisk"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="12dp"
@@ -307,10 +321,20 @@
             android:textSize="24dp" />
 
         <com.google.android.material.button.MaterialButton
+            android:layout_marginTop="10dp"
+            android:id="@+id/btn_change_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/BlueMaterialButton"
+            android:text="Change Password"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_marginTop="10dp"
             android:id="@+id/logout_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/OrangeMaterialButton"
             android:text="Log Out"/>
+
     </LinearLayout>
 </ScrollView>

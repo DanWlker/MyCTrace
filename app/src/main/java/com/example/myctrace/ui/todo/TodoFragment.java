@@ -18,14 +18,14 @@ import com.google.android.material.card.MaterialCardView;
 
 public class TodoFragment extends Fragment {
 
-    private TodoViewModel todoViewModel;
+    //private TodoViewModel todoViewModel;
     private TodoFragmentBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        todoViewModel = new ViewModelProvider(this).get(TodoViewModel.class);
+        //todoViewModel = new ViewModelProvider(this).get(TodoViewModel.class);
         binding = TodoFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 

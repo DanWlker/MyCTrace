@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -29,7 +31,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myctrace.R;
 import com.example.myctrace.databinding.FragmentHomeBinding;
-import com.example.myctrace.ui.notifications.NotificationsFragment;
 import com.example.myctrace.ui.todo.TodoFragment;
 import com.example.myctrace.ui.toknow.ToknowFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -131,8 +132,8 @@ public class HomeFragment extends Fragment {
                 if (!task.isSuccessful()) { return; }
 
                 String uname;
-                if (task.getResult().child("icNumber").exists()) {
-                    uname = String.valueOf((task.getResult().child("icNumber").getValue()));
+                if (task.getResult().child("uname").exists()) {
+                    uname = String.valueOf((task.getResult().child("uname").getValue()));
                 } else {
                     uname = "User";
                 }

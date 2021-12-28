@@ -56,13 +56,13 @@ public class RiskAssessmentActivity extends AppCompatActivity {
                     Toast.makeText(RiskAssessmentActivity.this, "Please Answer All Questions", Toast.LENGTH_SHORT).show();
                 } else {
                     //check if there are any "No"
-                    if (rb_q1.isChecked() || rb_q2.isChecked() || rb_q3.isChecked()){
-                        mbase.child("riskInfo").child("riskStatus").setValue("Low");
+                    if (rb_q1.isChecked() || rb_q2.isChecked() || rb_q3.isChecked()) {
+                        mbase.child("riskInfo").child("riskStatus").setValue("High");
                         mbase.child("riskInfo").child("dateTime").setValue(System.currentTimeMillis()/1000);
                         Toast.makeText(RiskAssessmentActivity.this, "Submitted Successfully!", Toast.LENGTH_SHORT).show();
                         switchIntent();
                     } else {
-                        mbase.child("riskInfo").child("riskStatus").setValue("High");
+                        mbase.child("riskInfo").child("riskStatus").setValue("Low");
                         mbase.child("riskInfo").child("dateTime").setValue(System.currentTimeMillis()/1000);
                         Toast.makeText(RiskAssessmentActivity.this, "Submitted Successfully!", Toast.LENGTH_SHORT).show();
                         switchIntent();
