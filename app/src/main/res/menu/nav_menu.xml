@@ -17,7 +17,7 @@
         <item
             android:id="@+id/search_test_location"
             android:icon="@drawable/ic_map_pin"
-            android:title="Test Locations" />
+            android:title="PPV Locations" />
 
         <item
             android:id="@+id/navigation_profile"
