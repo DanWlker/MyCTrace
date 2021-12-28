@@ -25,7 +25,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginVertical="5dp">
                 <TextView
                     android:id="@+id/txtViewVaccination"
                     android:layout_width="wrap_content"
@@ -39,25 +40,27 @@
                     android:id="@+id/txtViewVaccinationDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Certificate issued: Loading..."
+                    android:text="Vaccination Date: Loading..."
                     android:textColor="@color/blue_primary"></TextView>
 
-                <ProgressBar
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:layout_marginTop="5dp"
                     android:id="@+id/progressBarVaccination"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:indeterminate="false"
-                    android:max="100"
-                    android:progress="0"
-                    >
+                    app:trackThickness="5dp"
+                    app:trackCornerRadius="2dp"
+                    app:indicatorColor="@color/blue_secondary"
+                    />
 
-                </ProgressBar>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginVertical="5dp">
                 <TextView
                     android:id="@+id/txtViewRisk"
                     android:layout_width="wrap_content"
