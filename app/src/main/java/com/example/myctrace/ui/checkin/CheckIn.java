@@ -214,7 +214,12 @@ public class CheckIn extends Fragment {
 
                 txtViewVaccination.setText(dosage);
                 txtViewVaccination.setTextColor(indicatorColor);
-                txtViewVaccinationDate.setText("Vaccination Date: " + formatted);
+
+                if(dosage.equals("No Vaccination"))
+                    txtViewVaccinationDate.setText("No Vaccination Date");
+                else
+                    txtViewVaccinationDate.setText("Vaccination Date: " + formatted);
+                
                 txtViewVaccinationDate.setTextColor(indicatorColor);
                 progressBarVaccination.setProgressCompat(progress, true);
                 progressBarVaccination.setIndicatorColor(indicatorColor);
