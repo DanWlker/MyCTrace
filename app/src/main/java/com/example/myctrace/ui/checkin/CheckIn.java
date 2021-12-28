@@ -239,8 +239,19 @@ public class CheckIn extends Fragment {
                 if(!task.isSuccessful())
                     return;
 
-                String riskStatus = String.valueOf(task.getResult().child("riskStatus").getValue());
-                String dateTime = String.valueOf(task.getResult().child("dateTime").getValue());
+                String riskStatus;
+                if(task.getResult().child("riskStatus").exists()) {
+                    riskStatus = String.valueOf(task.getResult().child("riskStatus").getValue());
+                } else {
+                    riskStatus = "No Data";
+                }
+
+                String dateTime;
+                if(task.getResult().child("riskStatus").exists()) {
+                   dateTime = String.valueOf(task.getResult().child("dateTime").getValue());
+                } else {
+                    dateTime = "0";
+                }
 
 
                 Long dateTimeLong = Long.valueOf(dateTime);
@@ -264,9 +275,11 @@ public class CheckIn extends Fragment {
                 }
 
                 txtViewRisk.setText(riskStatus);
-                txtViewRiskDate.setText(
-                        "Health Risk Assesment: " + formatted
-                );
+                if(dateTime.equals("0")) {
+                    txtViewRiskDate.setText("No Asssement Date");
+                } else {
+                    txtViewRiskDate.setText("Health Risk Assesment: " + formatted);
+                }
                 txtViewRisk.setTextColor(colorToSet);
                 txtViewRiskDate.setTextColor(colorToSet);
 
@@ -278,7 +291,6 @@ public class CheckIn extends Fragment {
     private void loadRecentCheckIns(View v) {
         //Firebase stuff
         recyclerView = v.findViewById(R.id.checkInLocationRecycler);
-
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(v.getContext());
         mLayoutManager.setReverseLayout(true);
