@@ -20,63 +20,70 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center_horizontal"
-            android:paddingVertical="40dp">
+            android:paddingVertical="40dp"
+            android:paddingHorizontal="28dp">
             <LinearLayout
-                android:layout_width="320dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/txtViewVaccination"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fully Vaccinated"
+                    android:text="Loading..."
                     android:textSize="23sp"
-                    android:textColor="@color/green_primary">
+                    android:textColor="@color/blue_primary">
                 </TextView>
+
                 <TextView
+                    android:id="@+id/txtViewVaccinationDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Certificate issued: 24 September 2021"
-                    android:textColor="@color/green_primary">
-                </TextView>
+                    android:text="Certificate issued: Loading..."
+                    android:textColor="@color/blue_primary"></TextView>
+
                 <ProgressBar
+                    android:id="@+id/progressBarVaccination"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:indeterminate="false"
                     android:max="100"
-                    android:progress="100"
+                    android:progress="0"
                     >
 
                 </ProgressBar>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="320dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/txtViewRisk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Low Risk"
+                    android:text="Loading..."
                     android:textSize="23sp"
-                    android:textColor="@color/green_primary"
+                    android:textColor="@color/blue_primary"
                     >
                 </TextView>
                 <TextView
+                    android:id="@+id/txtViewRiskDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Health Risk Assessment: 17 September 2021"
-                    android:textColor="@color/green_primary">
-
+                    android:text="Health Risk Assessment: Loading"
+                    android:textColor="@color/blue_primary">
                 </TextView>
-                <ProgressBar
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                    android:indeterminate="false"
-                    android:max="100"
-                    android:progress="100">
+<!--                <ProgressBar-->
+<!--                    android:id="@+id/progressBarRisk"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"-->
+<!--                    android:indeterminate="false"-->
+<!--                    android:max="100"-->
+<!--                    android:progress="100">-->
 
-                </ProgressBar>
+<!--                </ProgressBar>-->
             </LinearLayout>
         </LinearLayout>
 

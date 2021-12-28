@@ -7,11 +7,13 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +45,10 @@ import com.example.myctrace.ui.toknow.NewsModel;
 import com.example.myctrace.uireusablecomponents.checkInLocation.CheckInLocationAdapter;
 import com.example.myctrace.uireusablecomponents.checkInLocation.CheckInLocationModal;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -103,8 +109,7 @@ public class CheckIn extends Fragment {
         //Firebase stuff
         mbase = FirebaseDatabase.getInstance()
                 .getReference("user")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("checkIns");
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
 
         TextView textViewMore = view.findViewById(R.id.view_more);
@@ -143,7 +148,63 @@ public class CheckIn extends Fragment {
                 launchScanQRActivity.launch(scanQR);
             }
         });
+
+        checkRisk(view);
+
+        checkVacStatus(view);
+
         loadRecentCheckIns(view);
+
+    }
+
+    private void checkVacStatus(View v) {
+        TextView txtViewVaccination = v.findViewById(R.id.txtViewVaccination);
+        TextView txtViewVaccinationDate = v.findViewById(R.id.txtViewRiskDate);
+    }
+
+    private void checkRisk(View v) {
+        TextView txtViewRisk = v.findViewById(R.id.txtViewRisk);
+        TextView txtViewRiskDate = v.findViewById(R.id.txtViewRiskDate);
+
+        mbase.child("riskInfo").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()) {
+
+                    String riskStatus = String.valueOf(task.getResult().child("riskStatus").getValue());
+                    String dateTime = String.valueOf(task.getResult().child("dateTime").getValue());
+
+                    txtViewRisk.setText(riskStatus);
+
+                    Long dateTimeLong = Long.valueOf(dateTime);
+                    Date date = new Date(dateTimeLong*1000);
+                    DateFormat format = new SimpleDateFormat("dd MMMM yyyy");
+                    format.setTimeZone(TimeZone.getTimeZone("Asia/Kuala_Lumpur"));
+                    String formatted = format.format(date);
+
+                    txtViewRiskDate.setText(
+                            "Health Risk Assesment: " + formatted
+                    );
+
+                    int colorToSet;
+
+                    switch (riskStatus) {
+                        case "High":
+                            colorToSet = ContextCompat.getColor(getContext(), R.color.orange_primary);
+                            break;
+                        case "Low":
+                            colorToSet = ContextCompat.getColor(getContext(), R.color.green_primary);
+                            break;
+                        default:
+                            colorToSet = ContextCompat.getColor(getContext(), R.color.blue_primary);
+                    }
+
+                    txtViewRisk.setTextColor(colorToSet);
+                    txtViewRiskDate.setTextColor(colorToSet);
+
+                }
+            }
+        });
 
     }
 
@@ -160,8 +221,8 @@ public class CheckIn extends Fragment {
 
         FirebaseRecyclerOptions<CheckInLocationModal> options =
                 new FirebaseRecyclerOptions.Builder<CheckInLocationModal>()
-                        .setIndexedQuery(mbase.orderByKey().limitToLast(4), mbase.getRef(), CheckInLocationModal.class)
-                    //.setQuery(mbase, CheckInLocationModal.class)
+                        .setIndexedQuery(mbase.child("checkIns").orderByKey().limitToLast(4), mbase.child("checkIns").getRef(), CheckInLocationModal.class)
+                    //.setQuery(mbase.child("checkIns"), CheckInLocationModal.class)
                     .build();
 
         adapter = new CheckInLocationAdapter(options);
@@ -194,11 +255,13 @@ public class CheckIn extends Fragment {
         String formatted = format.format(currentDateTime);
 
         //upload onto firebase
-        mbase.child(formatted)
+        mbase.child("checkIns")
+                .child(formatted)
                 .child("location")
                 .setValue(data);
 
-        mbase.child(formatted)
+        mbase.child("checkIns")
+                .child(formatted)
                 .child("dateTime")
                 .setValue(currentEpochSecond);
     }
