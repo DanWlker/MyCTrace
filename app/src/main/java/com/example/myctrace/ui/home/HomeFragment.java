@@ -13,7 +13,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -28,11 +31,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myctrace.R;
 import com.example.myctrace.databinding.FragmentHomeBinding;
-import com.example.myctrace.ui.notifications.NotificationsFragment;
 import com.example.myctrace.ui.todo.TodoFragment;
 import com.example.myctrace.ui.toknow.ToknowFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -41,12 +47,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class HomeFragment extends Fragment {
 
     //private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
 
-    TextView tvConfirmedCase, tvRecoveredCase, tvVacProgress;
+    TextView tvConfirmedCase, tvRecoveredCase, tvVacProgress, tvUname;
     MaterialCardView cvTodo, cvToknow;
     LinearProgressIndicator pbVac;
 
@@ -58,10 +69,7 @@ public class HomeFragment extends Fragment {
     TextView vacTitle, vacUpdate, vacDate;
     MaterialCardView cvVac;
 
-    private DatabaseReference mDatabase;
-
-    private String riskStatus = "low";
-    private String vacStatus = "firstdose";
+    private DatabaseReference mbase;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -69,10 +77,24 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        //bind layout elements
         bindElements();
 
-        setRiskState(riskStatus);
-        setVacStatus(vacStatus);
+        //setting firebase reference
+        mbase = FirebaseDatabase.getInstance()
+                .getReference("user")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        //get username
+        setUsername();
+
+        //update risk and vaccination status
+        checkRisk();
+        checkVac();
+
+        //set statistics by getting data from API
+        fetchCovidAPI();
+        fetchVaccineAPI();
 
         cvTodo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,11 +122,99 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        //set statistics by getting data from API
-        fetchCovidAPI();
-        fetchVaccineAPI();
-
         return root;
+    }
+
+    private void setUsername() {
+        mbase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) { return; }
+
+                String uname;
+                if (task.getResult().child("uname").exists()) {
+                    uname = String.valueOf((task.getResult().child("uname").getValue()));
+                } else {
+                    uname = "User";
+                }
+
+                tvUname.setText("Hello, " + uname);
+            }
+        });
+    }
+
+    private void checkRisk() {
+        mbase.child("riskInfo").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(!task.isSuccessful()) { return; }
+
+                String riskStatus;
+                if(task.getResult().child("riskStatus").exists()) {
+                    riskStatus = String.valueOf(task.getResult().child("riskStatus").getValue());
+                } else {
+                    riskStatus = "No Data";
+                }
+
+                String dateTime;
+                if(task.getResult().child("riskStatus").exists()) {
+                    dateTime = String.valueOf(task.getResult().child("dateTime").getValue());
+                } else {
+                    dateTime = "0";
+                }
+
+                Long dateTimeLong = Long.valueOf(dateTime);
+                Date date = new Date(dateTimeLong*1000);
+                DateFormat format = new SimpleDateFormat("dd MMMM yyyy");
+                format.setTimeZone(TimeZone.getTimeZone("Asia/Kuala_Lumpur"));
+                String formatted = format.format(date);
+
+                riskTitle.setText(riskStatus + " Risk");
+                setRiskState(riskStatus);
+
+                if(dateTime.equals("0")) {
+                    riskDate.setText("No Asssement Date");
+                } else {
+                    riskDate.setText(formatted);
+                }
+
+            }
+        });
+    }
+
+    private void checkVac() {
+        mbase.child("vacInfo").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(!task.isSuccessful())
+                    return;
+
+                String dosage = "No Vaccination";
+                String dateTime = "0";
+
+                if(task.getResult().child("secondDose").exists()) {
+                    dosage = "Fully Vaccinated";
+                    dateTime = String.valueOf(task.getResult().child("secondDose").getValue());
+                } else if(task.getResult().child("firstDose").exists()) {
+                    dosage = "First Dose";
+                    dateTime = String.valueOf(task.getResult().child("firstDose").getValue());
+                }
+
+                Long dateTimeLong = Long.valueOf(dateTime);
+                Date date = new Date(dateTimeLong*1000);
+                DateFormat format = new SimpleDateFormat("dd MMMM yyyy");
+                format.setTimeZone(TimeZone.getTimeZone("Asia/Kuala_Lumpur"));
+                String formatted = format.format(date);
+
+                vacTitle.setText(dosage);
+                setVacStatus(dosage);
+
+                if(dosage.equals("No Vaccination"))
+                    vacDate.setText("No Vaccination Date");
+                else
+                    vacDate.setText(formatted);
+            }
+        });
     }
 
     private void bindElements()
@@ -123,6 +233,8 @@ public class HomeFragment extends Fragment {
         vacUpdate = binding.vacUpdated;
         vacDate = binding.vacDate;
 
+        //others
+        tvUname = binding.tvUName;
         cvTodo = binding.cvTodo;
         cvToknow = binding.cvToknow;
         tvConfirmedCase = binding.tvConfirmedCase;
@@ -204,9 +316,9 @@ public class HomeFragment extends Fragment {
         queue.add(stringRequest);
     }
 
-    private void setRiskState(String riskstatus)
+    private void setRiskState(String status)
     {
-        if (riskstatus == "high")
+        if (status.equals("High"))
         {
             cvRisk.setCardBackgroundColor(getResources().getColor(R.color.orange_secondary));
             riskIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle_orange));
@@ -222,9 +334,9 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void setVacStatus(String vacStatus)
+    private void setVacStatus(String dosage)
     {
-        if (vacStatus == "completed")
+        if (dosage == "Fully Vaccinated")
         {
             cvVac.setCardBackgroundColor(getResources().getColor(R.color.green_secondary));
             vacIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_green));
