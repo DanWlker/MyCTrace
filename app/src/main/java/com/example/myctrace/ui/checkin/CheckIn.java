@@ -128,7 +128,7 @@ public class CheckIn extends Fragment {
             }
         });
 
-        Button buttonGroupCheckIn = view.findViewById(R.id.btn_groupcheckin);
+        /*Button buttonGroupCheckIn = view.findViewById(R.id.btn_groupcheckin);
         buttonGroupCheckIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,7 +139,7 @@ public class CheckIn extends Fragment {
                 ft.addToBackStack(null);
                 ft.commit();
             }
-        });
+        });*/
 
         Button buttonSelfCheckIn = view.findViewById(R.id.btn_self_check_in);
         buttonSelfCheckIn.setOnClickListener(new View.OnClickListener() {

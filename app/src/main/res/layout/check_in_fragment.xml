@@ -124,6 +124,28 @@
         android:clickable="true"
         android:id="@+id/view_more"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_weight="0"
+        android:layout_marginVertical="10dp">
+        <com.google.android.material.button.MaterialButton
+            android:layout_marginHorizontal="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Check In"
+            android:id="@+id/btn_self_check_in"
+            style="@style/GreenMaterialButton"
+            app:iconGravity="textStart"
+            app:icon="@drawable/ic_user"
+            app:iconTint="@color/green_primary"/>
+
+    </LinearLayout>
+
+    <!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -151,6 +173,8 @@
             app:icon="@drawable/ic_users"
             app:iconTint="@color/blue_primary"/>
 
-    </LinearLayout>
+    </LinearLayout> -->
+
+
 
 </LinearLayout>
