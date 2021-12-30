@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
     //private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
 
-    TextView tvConfirmedCase, tvRecoveredCase, tvVacProgress, tvUname;
+    TextView tvConfirmedCase, tvRecoveredCase, tvVacProgress, tvDeathCase, tvActiveCase, tvUname;
     MaterialCardView cvTodo, cvToknow;
     LinearProgressIndicator pbVac;
 
@@ -239,6 +239,8 @@ public class HomeFragment extends Fragment {
         cvToknow = binding.cvToknow;
         tvConfirmedCase = binding.tvConfirmedCase;
         tvRecoveredCase = binding.tvRecoveredCase;
+        tvActiveCase = binding.tvActiveCase;
+        tvDeathCase = binding.tvDeathCase;
         tvVacProgress = binding.tvVacProgress;
         pbVac = binding.pbVacProgress;
     }
@@ -259,6 +261,8 @@ public class HomeFragment extends Fragment {
 
                             tvConfirmedCase.setText(jsonObject.getString("todayCases"));
                             tvRecoveredCase.setText(jsonObject.getString("todayRecovered"));
+                            tvDeathCase.setText(jsonObject.getString("todayDeaths"));
+                            tvActiveCase.setText(jsonObject.getString("active"));
                         }
                         catch (JSONException e) {
                             e.printStackTrace();
