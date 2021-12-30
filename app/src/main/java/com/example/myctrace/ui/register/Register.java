@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -50,7 +52,8 @@ public class Register extends AppCompatActivity {
     EditText editTextPassword;
     EditText editTextRetypePassword;
     EditText editTextPhoneNumber;
-    EditText editTextVerificationCode;
+    EditText editTextUserName;
+    AutoCompleteTextView editTextFilledExposedDropdown;
 
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
@@ -102,7 +105,18 @@ public class Register extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextRetypePassword = findViewById(R.id.editTextRetypePassword);
         editTextPhoneNumber = findViewById(R.id.editTextPhoneNumber);
-        editTextVerificationCode = findViewById(R.id.editTextVerificationCode);
+        editTextUserName = findViewById(R.id.editTextUserName);
+
+        String[] type = new String[] {"Johor", "Kedah", "Kelantan", "Kuala Lumpur", "Labuan", "Melaka", "Negeri Sembilan", "Pahang", "Penang", "Perak", "Perlis", "Putrajaya", "Sabah", "Sarawak", "Selangor", "Terengganu", "Others"};
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(
+                        this,
+                        R.layout.state_dropdown_menu_popup,
+                        type);
+
+        editTextFilledExposedDropdown =
+                findViewById(R.id.edTxtState);
+        editTextFilledExposedDropdown.setAdapter(adapter);
 
     }
 
@@ -136,7 +150,8 @@ public class Register extends AppCompatActivity {
         input.put("password", editTextPassword.getText().toString().trim());
         input.put("retypePassword", editTextRetypePassword.getText().toString().trim());
         input.put("phoneNumber", editTextPhoneNumber.getText().toString().trim());
-        input.put("verificationCode", editTextVerificationCode.getText().toString().trim());
+        input.put("uname",editTextUserName.getText().toString().trim());
+        input.put("currState", editTextFilledExposedDropdown.getText().toString().trim());
 
         if(!checkFields(input)) {
             return;

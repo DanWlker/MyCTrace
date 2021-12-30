@@ -189,6 +189,8 @@ public class ICVerification extends AppCompatActivity {
         Map<String, Object> userData = new HashMap<String, Object>();
         userData.put("phone", input.get("phoneNumber"));
         userData.put("icNumber", input.get("identificationNumber"));
+        userData.put("uname", input.get("uname"));
+        userData.put("currState", input.get("currState"));
 
         FirebaseDatabase.getInstance().getReference("user")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

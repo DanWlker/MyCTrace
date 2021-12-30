@@ -32,7 +32,20 @@
             android:ems="10"
             android:hint="Identification Card Number"
             android:inputType="text"
-            android:drawableEnd="@drawable/ic_user"/>
+            android:drawableEnd="@drawable/ic_credit_card"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+
+        <EditText
+            android:id="@+id/editTextUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_user"
+            android:ems="10"
+            android:hint="Name as per IC"
+            android:inputType="text" />
 
         <Space
             android:layout_width="0dp"
@@ -77,31 +90,17 @@
             android:layout_width="0dp"
             android:layout_height="30dp"/>
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/editTextVerificationCode"
-                android:layout_width="match_parent"
+            android:hint="State">
+            <AutoCompleteTextView
+                android:id="@+id/edTxtState"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Verification Code"
-                android:inputType="text"
-                android:layout_weight="1"
-                android:drawableEnd="@drawable/ic_check"
-                />
+                android:layout_width="match_parent"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Get Code"
-                android:layout_weight="0"
-                android:layout_marginLeft="10dp"
-                style="@style/GreenMaterialButton"/>
-
-        </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Space
             android:layout_width="0dp"
