@@ -138,7 +138,10 @@ public class CheckInHistoryFragment extends Fragment {
         } else {
             Log.d("Custom", "Search term is: " + searchTerm);
             options = new FirebaseRecyclerOptions.Builder<CheckInLocationModal>()
-                    .setIndexedQuery(mbase.orderByKey().startAt(searchTerm).limitToLast(20), mbase.getRef(), CheckInLocationModal.class)
+                    .setIndexedQuery(mbase.orderByKey()
+                            .startAt(searchTerm)
+                            .endAt(searchTerm+"\uf8ff")
+                            .limitToLast(20), mbase.getRef(), CheckInLocationModal.class)
                     //.setQuery(mbase, CheckInLocationModal.class)
                     .build();
         }
