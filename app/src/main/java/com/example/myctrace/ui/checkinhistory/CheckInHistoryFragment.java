@@ -34,7 +34,6 @@ import java.util.TimeZone;
 
 public class CheckInHistoryFragment extends Fragment {
 
-    private CheckInHistoryViewModel mViewModel;
 
     EditText edTxtDate;
     Calendar myCalendar = Calendar.getInstance();
@@ -57,7 +56,6 @@ public class CheckInHistoryFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(CheckInHistoryViewModel.class);
         // TODO: Use the ViewModel
         View view = getView();
 

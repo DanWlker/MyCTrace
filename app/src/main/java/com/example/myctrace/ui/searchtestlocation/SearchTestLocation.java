@@ -41,7 +41,6 @@ import kotlin.OptionalExpectation;
 
 public class SearchTestLocation extends Fragment {
 
-    private SearchTestLocationViewModel mViewModel;
     private ArrayList<PPVLocation> locations;
     private ArrayList<PPVLocation> allLocations;
     private String previousResult;
@@ -63,7 +62,6 @@ public class SearchTestLocation extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(SearchTestLocationViewModel.class);
 
 
         // TODO: Use the ViewModel

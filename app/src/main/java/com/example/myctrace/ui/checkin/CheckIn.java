@@ -49,7 +49,6 @@ import java.util.TimeZone;
 
 public class CheckIn extends Fragment {
 
-    private CheckInViewModel mViewModel;
 
     // to handle image callback
     ActivityResultLauncher<Intent> launchScanQRActivity;
@@ -87,7 +86,6 @@ public class CheckIn extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(CheckInViewModel.class);
 
         // TODO: Use the ViewModel
         View view = getView();
