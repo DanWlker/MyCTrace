@@ -23,9 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 
 public class EditPasswordActivity extends AppCompatActivity {
 
-    //DatabaseReference mbase;
+    //firebase user reference
     FirebaseUser user;
-
+    //initializing layout elements
     EditText etOldPAss, etNewPass, etConfirmPass;
 
     @Override
@@ -33,61 +33,72 @@ public class EditPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_password);
 
-        MaterialButton btn_submit;
+        //bind layout elements
         etOldPAss = findViewById(R.id.et_oldpass);
         etNewPass = findViewById(R.id.et_newpass);
         etConfirmPass = findViewById(R.id.et_confirmpass);
+        MaterialButton btn_submit;
         btn_submit = findViewById(R.id.btn_submit);
 
+        //submit button onclick listener
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //check if any of the edit text are empty
                 if (etOldPAss.getText().toString().trim().isEmpty() ||
                         etNewPass.getText().toString().trim().isEmpty() ||
                         etConfirmPass.getText().toString().trim().isEmpty())
                 {
+                    //if any of the fields are empty, toast message
                     Toast.makeText(EditPasswordActivity.this, "Please Enter All Fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                //check if new pass matches confirm pass
                 if (!etNewPass.getText().toString().trim()
                         .equals(etConfirmPass.getText().toString().trim())) {
+                    //if doesn't match, toast message
                     Toast.makeText(EditPasswordActivity.this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                //proceed to update password
                 updatePassword(
                         etOldPAss.getText().toString().trim(),
                         etNewPass.getText().toString().trim()
                 );
             }
         });
-
     }
 
     private void updatePassword(String oldpass, String newpass) {
+        //get current user
         user = FirebaseAuth.getInstance().getCurrentUser();
         final String email = user.getEmail();
         AuthCredential credential = EmailAuthProvider.getCredential(email,oldpass);
 
+        //reauthenticate user
         user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
+                    //if authenticate successful, update password
                     user.updatePassword(newpass).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(!task.isSuccessful()){
-                                //Toast something went wrong
+                                //communication to database or update password unsucessful, toast message
                                 Toast.makeText(EditPasswordActivity.this, "Couldn't communicate with database now, please try again later.", Toast.LENGTH_SHORT).show();
                             }else {
-                                //Toast success
+                                //Toast update password success message
                                 Toast.makeText(EditPasswordActivity.this, "Password Changed Successfully. Please login again", Toast.LENGTH_SHORT).show();
+                                //switch intent
                                 signOutSwitchIntent();
                             }
                         }
                     });
                 }else {
+                    //authentication failed, old password is incorrect
                     Toast.makeText(EditPasswordActivity.this, "Authentication failed, please ensure all fields are correct.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -95,7 +106,9 @@ public class EditPasswordActivity extends AppCompatActivity {
     }
 
     private void signOutSwitchIntent() {
+        //signout
         FirebaseAuth.getInstance().signOut();
+        //switch intent
         Intent intent = new Intent(EditPasswordActivity.this, Login.class);
         startActivity(intent);
         EditPasswordActivity.this.finish();

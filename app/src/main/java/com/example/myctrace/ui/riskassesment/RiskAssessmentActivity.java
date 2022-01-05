@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RiskAssessmentActivity extends AppCompatActivity {
 
+    //Database reference
     DatabaseReference mbase;
 
     @Override
@@ -36,16 +37,15 @@ public class RiskAssessmentActivity extends AppCompatActivity {
         rb_q1 = findViewById(R.id.rb_q1);
         rb_q2 = findViewById(R.id.rb_q2);
         rb_q3 = findViewById(R.id.rb_q3);
+        MaterialButton btn_submit;
+        btn_submit = findViewById(R.id.btn_submit);
 
         //set firebase reference
         mbase = FirebaseDatabase.getInstance().getReference()
                 .child("user")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-        //submit button
-        MaterialButton btn_submit;
-        btn_submit = findViewById(R.id.btn_submit);
-
+        //submit button onclick listener
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,18 +53,26 @@ public class RiskAssessmentActivity extends AppCompatActivity {
                 if (rg_q1.getCheckedRadioButtonId() == -1 ||
                         rg_q2.getCheckedRadioButtonId() == -1 ||
                         rg_q3.getCheckedRadioButtonId() == -1) {
-                    Toast.makeText(RiskAssessmentActivity.this, "Please Answer All Questions", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RiskAssessmentActivity.this,
+                            "Please Answer All Questions",
+                            Toast.LENGTH_SHORT).show();
                 } else {
-                    //check if there are any "No"
+                    //check if there are any "Yes" checked
                     if (rb_q1.isChecked() || rb_q2.isChecked() || rb_q3.isChecked()) {
+                        //if any of the "yes" are checked, update risk status of user to high
                         mbase.child("riskInfo").child("riskStatus").setValue("High");
                         mbase.child("riskInfo").child("dateTime").setValue(System.currentTimeMillis()/1000);
+                        //Toast message
                         Toast.makeText(RiskAssessmentActivity.this, "Submitted Successfully!", Toast.LENGTH_SHORT).show();
+                        //Switch Intent to MainActivity
                         switchIntent();
                     } else {
+                        //else, update risk status of user to low
                         mbase.child("riskInfo").child("riskStatus").setValue("Low");
                         mbase.child("riskInfo").child("dateTime").setValue(System.currentTimeMillis()/1000);
+                        //Toast message
                         Toast.makeText(RiskAssessmentActivity.this, "Submitted Successfully!", Toast.LENGTH_SHORT).show();
+                        //Switch intent to Main activity
                         switchIntent();
                     }
                 }
@@ -73,6 +81,7 @@ public class RiskAssessmentActivity extends AppCompatActivity {
     }
 
     private void switchIntent() {
+        //switch intent to main activity
         Intent intent = new Intent(RiskAssessmentActivity.this, MainActivity.class);
         startActivity(intent);
         finish();

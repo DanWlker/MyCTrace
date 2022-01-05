@@ -7,7 +7,7 @@ public class NewsModel {
 
     private String title, url, imgurl;
 
-    //empty constructor
+    //empty constructor required by firebase recycler
     public NewsModel() {}
 
     //getter methods

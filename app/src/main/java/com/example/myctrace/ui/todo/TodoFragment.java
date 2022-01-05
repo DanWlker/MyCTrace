@@ -18,22 +18,22 @@ import com.google.android.material.card.MaterialCardView;
 
 public class TodoFragment extends Fragment {
 
-    //private TodoViewModel todoViewModel;
     private TodoFragmentBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-        //todoViewModel = new ViewModelProvider(this).get(TodoViewModel.class);
         binding = TodoFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final MaterialCardView cvRisk = binding.cvRisk;
+        //bind elements
+        MaterialCardView cvRisk = binding.cvRisk;
 
+        //risk assessment card onclick listener
         cvRisk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //switch intent
                 Intent i = new Intent(getActivity(), RiskAssessmentActivity.class);
                 startActivity(i);
             }
