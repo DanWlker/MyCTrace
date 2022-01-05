@@ -17,30 +17,12 @@
         android:label="Check In"
         tools:layout="@layout/check_in_fragment" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.myctrace.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
-
-    <fragment
-        android:id="@+id/check_in_history"
-        android:name="com.example.myctrace.ui.checkinhistory.CheckInHistoryFragment"
-        android:label="Check In History"
-        tools:layout="@layout/check_in_history_fragment" />
-
         
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.myctrace.ui.profile.ProfileFragment"
         android:label="My Profile"
         tools:layout="@layout/fragment_profile" />
-
-    <fragment
-        android:id="@+id/scan_qr"
-        android:name="com.example.myctrace.ui.scanqr.ScanQr"
-        android:label="ScanQr"
-        tools:layout="@layout/scan_qr_fragment" />
 
     <fragment
         android:id="@+id/search_test_location"

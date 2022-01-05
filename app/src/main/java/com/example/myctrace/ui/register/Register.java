@@ -2,7 +2,6 @@ package com.example.myctrace.ui.register;
 
 import android.annotation.SuppressLint;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,10 +9,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowInsets;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -25,15 +21,6 @@ import com.example.myctrace.databinding.ActivityRegisterBinding;
 import com.example.myctrace.R;
 import com.example.myctrace.ui.icverification.ICVerification;
 import com.example.myctrace.ui.login.Login;
-import com.example.myctrace.ui.scanqr.ScanQr;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;

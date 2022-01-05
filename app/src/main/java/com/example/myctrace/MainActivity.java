@@ -103,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.check_in:
                 navController.navigate(R.id.check_in);
                 return true;
-            case R.id.navigation_notifications:
-                navController.navigate(R.id.navigation_notifications);
+            case R.id.search_test_location:
+                navController.navigate(R.id.search_test_location);
                 return true;
             case R.id.navigation_profile:
                 navController.navigate(R.id.navigation_profile);
