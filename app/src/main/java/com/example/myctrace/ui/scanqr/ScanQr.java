@@ -2,15 +2,10 @@ package com.example.myctrace.ui.scanqr;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -24,17 +19,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.example.myctrace.MainActivity;
 import com.example.myctrace.R;
-import com.example.myctrace.ui.EmulateQRScanningPage;
-import com.example.myctrace.ui.components.ComponentClickableUserPhoto;
-import com.example.myctrace.ui.login.Login;
-import com.example.myctrace.ui.register.Register;
+import com.example.myctrace.ui.QRScanner;
 
 public class ScanQr extends Fragment {
 
@@ -60,7 +50,7 @@ public class ScanQr extends Fragment {
         btnCheckIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), EmulateQRScanningPage.class);
+                Intent intent = new Intent(getActivity(), QRScanner.class);
                 //TODO:change to start activity without letting the user able to press back button to access stack history
                 startActivity(intent);
             }

@@ -17,7 +17,7 @@
             android:name=".ui.editprofile.EditPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.EmulateQRScanningPage"
+            android:name=".ui.QRScanner"
             android:exported="false" />
         <activity
             android:name=".ui.icverification.ICVerification"

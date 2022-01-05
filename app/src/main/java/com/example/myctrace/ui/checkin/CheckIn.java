@@ -8,13 +8,10 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -24,24 +21,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myctrace.R;
-import com.example.myctrace.ui.EmulateQRScanningPage;
+import com.example.myctrace.ui.QRScanner;
 import com.example.myctrace.ui.checkinhistory.CheckInHistoryFragment;
-import com.example.myctrace.ui.login.Login;
-import com.example.myctrace.ui.register.Register;
-import com.example.myctrace.ui.scanqr.ScanQr;
-import com.example.myctrace.ui.toknow.NewsAdapter;
-import com.example.myctrace.ui.toknow.NewsModel;
 import com.example.myctrace.uireusablecomponents.checkInLocation.CheckInLocationAdapter;
 import com.example.myctrace.uireusablecomponents.checkInLocation.CheckInLocationModal;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -53,12 +42,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -145,7 +131,7 @@ public class CheckIn extends Fragment {
         buttonSelfCheckIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent scanQR = new Intent(getActivity(), EmulateQRScanningPage.class);
+                Intent scanQR = new Intent(getActivity(), QRScanner.class);
                 launchScanQRActivity.launch(scanQR);
             }
         });

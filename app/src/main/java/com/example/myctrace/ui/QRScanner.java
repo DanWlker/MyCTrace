@@ -15,20 +15,19 @@ import android.widget.Toast;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
-import com.example.myctrace.MainActivity;
 import com.example.myctrace.R;
 import com.google.zxing.Result;
 
 import org.jetbrains.annotations.NotNull;
 
-public class EmulateQRScanningPage extends AppCompatActivity {
+public class QRScanner extends AppCompatActivity {
 
     private CodeScanner mCodeScanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emulate_qrscanning_page);
+        setContentView(R.layout.activity_qrscanner);
         if(ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 123);
