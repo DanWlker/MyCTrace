@@ -24,7 +24,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.myctrace.R;
-import com.example.myctrace.ui.QRScanner;
+import com.example.myctrace.ui.checkin.QRScanner;
 
 public class ScanQr extends Fragment {
 

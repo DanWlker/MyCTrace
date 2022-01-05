@@ -1,4 +1,4 @@
-package com.example.myctrace.ui;
+package com.example.myctrace.ui.checkin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
