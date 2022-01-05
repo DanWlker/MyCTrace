@@ -566,7 +566,6 @@ public class ProfileFragment extends Fragment {
             //the function returns a bitmap
             qrBitmap = encoder.encodeAsBitmap();
         } catch (WriterException e) {
-            Log.e("Encoder", e.toString());
         }
     }
 

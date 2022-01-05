@@ -18,7 +18,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -169,16 +168,10 @@ public class ICVerification extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
-                    // Sign in is successful
-                    Log.d("Firebase", "createUserWithEmail: Success");
-
-                    // Create user in realtime database and save data in it
-                    Log.d("Firebase", "Saving user info in database");
 
                     saveUserInfoInFirebase();
                 } else {
                     //Sign in is unsuccessful
-                    Log.w("Firebase", "createUserWithEmail: Fail", task.getException());
                     Toast.makeText(ICVerification.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                 }
             }

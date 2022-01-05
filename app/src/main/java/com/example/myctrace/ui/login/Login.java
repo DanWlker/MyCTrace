@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -144,11 +143,11 @@ public class Login extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
-                    Log.d("Firebase", "Login successful");
+
                     //redirect to home
                     redirectToHome();
                 } else {
-                    Log.d("Firebase", "Login failed");
+
                     Toast.makeText(Login.this, "Failed to login! Please retry again.", Toast.LENGTH_LONG).show();
                 }
             }

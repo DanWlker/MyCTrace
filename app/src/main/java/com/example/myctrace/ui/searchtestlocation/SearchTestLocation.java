@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,7 +82,7 @@ public class SearchTestLocation extends Fragment {
                 // If the event is a key-down event on the "enter" button
                 if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) &&
                         (i == KeyEvent.KEYCODE_ENTER)) {
-                    Log.d("Custom", "Enter is pressed on edit text.");
+
                     // Perform action on key press
                     displayResults(edTxtSearchLocation.getText().toString());
                     return true;
@@ -98,20 +97,20 @@ public class SearchTestLocation extends Fragment {
 
         if(searchTerm.equals("") || searchTerm.isEmpty()) {
             Toast.makeText(getContext(), "Please enter a location.", Toast.LENGTH_LONG);
-            Log.d("Custom", "Empty input");
+
             previousResult = "";
             adapter.clear();
             return;
         }
 
         if(previousResult.equals(searchTerm)) {
-            Log.d("Custom", "Search term is same");
+
             return;
         }
         previousResult = searchTerm;
 
         ArrayList<PPVLocation> searchedLocations = new ArrayList<PPVLocation>();
-        Log.d("Custom", "Adding to searched Locations");
+
         for(PPVLocation location : allLocations) {
             if(location.st.equals(searchTerm) || location.dist.equals(searchTerm)) {
                 searchedLocations.add(location);
@@ -119,12 +118,12 @@ public class SearchTestLocation extends Fragment {
         }
 
         if(searchedLocations.size() <= 0) {
-            Log.d("Custom", "No results");
+
             Toast.makeText(getContext(), "No results", Toast.LENGTH_LONG).show();
             return;
         }
 
-        Log.d("Custom", "Adding to adapter");
+
         adapter.clear();
         adapter.addAll(searchedLocations);
 
@@ -151,7 +150,7 @@ public class SearchTestLocation extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //Log.d("Custom", response);
+
                         try {
                             JSONObject topLevel = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
                             JSONArray jArr = topLevel.getJSONArray("data");
@@ -164,10 +163,10 @@ public class SearchTestLocation extends Fragment {
                                 allLocations.add(tempObj);
                             }
                         } catch (JSONException e) {
-                            Log.d("Custom", e.toString());
+
                         }
                         nDialog.dismiss();
-                        Log.d("Custom", "Created all json objects");
+
 
                         listViewPPVHolder = getView().findViewById(R.id.listViewPPVHolder);
                         adapter = new PPVLocationAdapter(getContext(), locations);

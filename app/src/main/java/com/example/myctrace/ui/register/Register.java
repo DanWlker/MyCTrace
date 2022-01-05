@@ -176,7 +176,6 @@ public class Register extends AppCompatActivity {
 
     private boolean checkFields(Map<String, String> input) {
         for(String value: input.values()) {
-            Log.d("checkfields",value);
             if(value.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_LONG).show();
                 return false;

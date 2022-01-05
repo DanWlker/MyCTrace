@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,7 +108,6 @@ public class CheckInHistoryFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                Log.d("Custom", "edit text changed");
                 search(String.valueOf(charSequence));
             }
 
@@ -130,13 +128,11 @@ public class CheckInHistoryFragment extends Fragment {
         FirebaseRecyclerOptions<CheckInLocationModal> options;
 
         if(searchTerm.equals("")) {
-            Log.d("Custom", "Search term is empty");
             options = new FirebaseRecyclerOptions.Builder<CheckInLocationModal>()
                    .setIndexedQuery(mbase.orderByKey().limitToLast(20), mbase.getRef(), CheckInLocationModal.class)
                     //.setQuery(mbase, CheckInLocationModal.class)
                     .build();
         } else {
-            Log.d("Custom", "Search term is: " + searchTerm);
             options = new FirebaseRecyclerOptions.Builder<CheckInLocationModal>()
                     .setIndexedQuery(mbase.orderByKey()
                             .startAt(searchTerm)
@@ -145,7 +141,6 @@ public class CheckInHistoryFragment extends Fragment {
                     //.setQuery(mbase, CheckInLocationModal.class)
                     .build();
         }
-        Log.d("Custom", "Setting adapter");
         //Firebase stuff
         adapter = new CheckInLocationAdapter(options);
         recyclerView.setAdapter(adapter);

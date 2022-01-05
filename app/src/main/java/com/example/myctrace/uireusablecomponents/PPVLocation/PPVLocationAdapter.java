@@ -3,7 +3,6 @@ package com.example.myctrace.uireusablecomponents.PPVLocation;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,7 @@ public class PPVLocationAdapter extends ArrayAdapter<PPVLocation> {
         TextView txtViewState = (TextView) convertView.findViewById(R.id.txtViewState);
 
         // Populate the data into the template view using the data object
-        Log.d("Custom", "Populating view");
+
         txtViewLocation.setText(ppvLocation.ppvc);
         txtViewDestination.setText(ppvLocation.dist);
         txtViewState.setText(ppvLocation.st);
