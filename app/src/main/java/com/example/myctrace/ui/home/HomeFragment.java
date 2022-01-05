@@ -54,26 +54,20 @@ import java.util.TimeZone;
 
 public class HomeFragment extends Fragment {
 
-    //private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
-
-    TextView tvConfirmedCase, tvRecoveredCase, tvVacProgress, tvDeathCase, tvActiveCase, tvUname;
-    MaterialCardView cvTodo, cvToknow;
-    LinearProgressIndicator pbVac;
-
-    ImageView riskIcon;
-    TextView riskTitle, riskUpdate, riskDate;
-    MaterialCardView cvRisk;
-
-    ImageView vacIcon;
-    TextView vacTitle, vacUpdate, vacDate;
-    MaterialCardView cvVac;
-
     private DatabaseReference mbase;
+
+    //initializing layout components
+    TextView tvConfirmedCase, tvRecoveredCase, tvVacProgress,
+                tvDeathCase, tvActiveCase, tvUname, riskTitle,
+                riskUpdate, riskDate, vacTitle, vacUpdate, vacDate;
+    MaterialCardView cvTodo, cvToknow, cvRisk, cvVac;
+    LinearProgressIndicator pbVac;
+    ImageView riskIcon, vacIcon;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -96,11 +90,12 @@ public class HomeFragment extends Fragment {
         fetchCovidAPI();
         fetchVaccineAPI();
 
+        //Things-to-do card onclick listener
         cvTodo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment toDoFrag = new TodoFragment();
-
+                //switch to to do fragment
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                 ft.replace(R.id.nav_host_fragment_content_main, toDoFrag);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
@@ -113,7 +108,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Fragment toKnowFrag = new ToknowFragment();
-
+                //switch to to know fragment
                 FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                 ft.replace(R.id.nav_host_fragment_content_main, toKnowFrag);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
@@ -126,49 +121,57 @@ public class HomeFragment extends Fragment {
     }
 
     private void setUsername() {
+        //database listener
         mbase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) { return; }
 
                 String uname;
+                //check if username exist in database
                 if (task.getResult().child("uname").exists()) {
                     uname = String.valueOf((task.getResult().child("uname").getValue()));
                 } else {
                     uname = "User";
                 }
 
+                //set username to textview
                 tvUname.setText("Hello, " + uname);
             }
         });
     }
 
     private void checkRisk() {
+        //database listener
         mbase.child("riskInfo").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if(!task.isSuccessful()) { return; }
 
-                String riskStatus;
+                String riskStatus, dateTime;
+
+                //check if risk status exist
                 if(task.getResult().child("riskStatus").exists()) {
                     riskStatus = String.valueOf(task.getResult().child("riskStatus").getValue());
                 } else {
                     riskStatus = "No Data";
                 }
 
-                String dateTime;
+                //check if risk date exist
                 if(task.getResult().child("riskStatus").exists()) {
                     dateTime = String.valueOf(task.getResult().child("dateTime").getValue());
                 } else {
                     dateTime = "0";
                 }
 
+                //convert from epoch time to readable time format
                 Long dateTimeLong = Long.valueOf(dateTime);
                 Date date = new Date(dateTimeLong*1000);
                 DateFormat format = new SimpleDateFormat("dd MMMM yyyy");
                 format.setTimeZone(TimeZone.getTimeZone("Asia/Kuala_Lumpur"));
                 String formatted = format.format(date);
 
+                //set textviews respectively
                 riskTitle.setText(riskStatus + " Risk");
                 setRiskState(riskStatus);
 
@@ -177,12 +180,12 @@ public class HomeFragment extends Fragment {
                 } else {
                     riskDate.setText(formatted);
                 }
-
             }
         });
     }
 
     private void checkVac() {
+        //database listener
         mbase.child("vacInfo").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -192,6 +195,9 @@ public class HomeFragment extends Fragment {
                 String dosage = "No Vaccination";
                 String dateTime = "0";
 
+                //check if vaccination data exist
+                //if second dose info exist, user is fully vaccinated
+                //else if only first dose exist, user is partially vaccinated
                 if(task.getResult().child("secondDose").exists()) {
                     dosage = "Fully Vaccinated";
                     dateTime = String.valueOf(task.getResult().child("secondDose").getValue());
@@ -200,12 +206,14 @@ public class HomeFragment extends Fragment {
                     dateTime = String.valueOf(task.getResult().child("firstDose").getValue());
                 }
 
+                //convert from epoch time to readable time format
                 Long dateTimeLong = Long.valueOf(dateTime);
                 Date date = new Date(dateTimeLong*1000);
                 DateFormat format = new SimpleDateFormat("dd MMMM yyyy");
                 format.setTimeZone(TimeZone.getTimeZone("Asia/Kuala_Lumpur"));
                 String formatted = format.format(date);
 
+                //set text views respectively
                 vacTitle.setText(dosage);
                 setVacStatus(dosage);
 
@@ -233,10 +241,14 @@ public class HomeFragment extends Fragment {
         vacUpdate = binding.vacUpdated;
         vacDate = binding.vacDate;
 
-        //others
+        //user components
         tvUname = binding.tvUName;
+
+        //clickable cards
         cvTodo = binding.cvTodo;
         cvToknow = binding.cvToknow;
+
+        //APIs elements
         tvConfirmedCase = binding.tvConfirmedCase;
         tvRecoveredCase = binding.tvRecoveredCase;
         tvActiveCase = binding.tvActiveCase;
@@ -247,6 +259,7 @@ public class HomeFragment extends Fragment {
 
     private void fetchCovidAPI()
     {
+        //GET data from API
         RequestQueue queue = Volley.newRequestQueue(getContext());
         String url = "https://disease.sh/v3/covid-19/countries/MY?yesterday=1";
 
@@ -259,10 +272,12 @@ public class HomeFragment extends Fragment {
                         try{
                             JSONObject jsonObject = new JSONObject(response.toString());
 
+                            //set textviews respectively
                             tvConfirmedCase.setText(jsonObject.getString("todayCases"));
                             tvRecoveredCase.setText(jsonObject.getString("todayRecovered"));
                             tvDeathCase.setText(jsonObject.getString("todayDeaths"));
                             tvActiveCase.setText(jsonObject.getString("active"));
+
                         }
                         catch (JSONException e) {
                             e.printStackTrace();
@@ -276,12 +291,12 @@ public class HomeFragment extends Fragment {
                     }
                 }
         );
-
         queue.add(stringRequest);
     }
 
     private void fetchVaccineAPI()
     {
+        //GET data from API
         RequestQueue queue = Volley.newRequestQueue(getContext());
         String url = "https://www.vaksincovid.gov.my/json/heatmap.json";
 
@@ -294,12 +309,15 @@ public class HomeFragment extends Fragment {
                         try{
                             JSONObject jsonObject = new JSONObject(response.toString());
 
+                            //index 0 of json array is for "whole malaysia"
                             JSONObject vacjson = jsonObject.getJSONArray("data").getJSONObject(0);
+
+                            //calculating vaccination progress with dosecomplete per population
                             String vakcomplete = vacjson.getString("vakdosecomplete");
                             String population = vacjson.getString("pop");
-
                             double res = 100 * Double.valueOf(vakcomplete) / Double.valueOf(population);
 
+                            //set textviews respectively
                             tvVacProgress.setText(String.format("%.2f", res) + "%");
                             pbVac.setProgressCompat((int)Math.round(res), true);
 
@@ -312,11 +330,10 @@ public class HomeFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        tvVacProgress.setText("Nope");
+                        tvVacProgress.setText("API GET FAILED");
                     }
                 }
         );
-
         queue.add(stringRequest);
     }
 
@@ -324,12 +341,14 @@ public class HomeFragment extends Fragment {
     {
         if (status.equals("High"))
         {
+            //if risk status is high, set all respective elements as orange
             cvRisk.setCardBackgroundColor(getResources().getColor(R.color.orange_secondary));
             riskIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle_orange));
             riskTitle.setTextColor(getResources().getColor(R.color.orange_primary));
             riskUpdate.setTextColor(getResources().getColor(R.color.orange_primary));
             riskDate.setTextColor(getResources().getColor(R.color.orange_primary));
         } else {
+            //else, set all respective elements as blue
             cvRisk.setCardBackgroundColor(getResources().getColor(R.color.blue_secondary));
             riskIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle_blue));
             riskTitle.setTextColor(getResources().getColor(R.color.blue_primary));
@@ -342,12 +361,14 @@ public class HomeFragment extends Fragment {
     {
         if (dosage == "Fully Vaccinated")
         {
+            //if user is fully vaccinated, set all respective elements as green
             cvVac.setCardBackgroundColor(getResources().getColor(R.color.green_secondary));
             vacIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_green));
             vacTitle.setTextColor(getResources().getColor(R.color.green_primary));
             vacUpdate.setTextColor(getResources().getColor(R.color.green_primary));
             vacDate.setTextColor(getResources().getColor(R.color.green_primary));
         } else {
+            //else, set all respective elements as orange
             cvVac.setCardBackgroundColor(getResources().getColor(R.color.orange_secondary));
             vacIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_orange));
             vacTitle.setTextColor(getResources().getColor(R.color.orange_primary));

@@ -26,12 +26,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class EditProfileActivity extends AppCompatActivity {
 
+    //initializing layout components
     EditText et_uname, et_ic, et_phone;
     TextView icon_profile;
 
-    DatabaseReference mbase;
-
     String uName, icNum, phoneNum;
+    DatabaseReference mbase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,17 +50,20 @@ public class EditProfileActivity extends AppCompatActivity {
         icon_profile = findViewById(R.id.icon_profile);
         MaterialButton btn_submit = findViewById(R.id.btn_submit);
 
+        //set user information fields
         setFields();
 
+        //submit button onclick listener
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //update details
                 updateDetails();
+                //toast message and switch intent
                 Toast.makeText(EditProfileActivity.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
                 switchIntent();
             }
         });
-
     }
 
     private void setFields() {
@@ -70,21 +73,25 @@ public class EditProfileActivity extends AppCompatActivity {
                 if(!task.isSuccessful())
                     return;
 
+                //check if ic number exists
                 if (task.getResult().child("icNumber").exists())
                     icNum = String.valueOf(task.getResult().child("icNumber").getValue());
                 else
                     icNum = "No Data";
 
+                //check if username exists
                 if (task.getResult().child("uname").exists())
                     uName = String.valueOf(task.getResult().child("uname").getValue());
                 else
                     uName = "No Data";
 
+                //check if phone number exists
                 if (task.getResult().child("phone").exists())
                     phoneNum = String.valueOf(task.getResult().child("phone").getValue());
                 else
                     phoneNum = "No Data";
 
+                //set respective text views correctly
                 et_ic.setText(icNum);
                 et_uname.setHint(uName);
                 et_phone.setHint(phoneNum);
@@ -94,17 +101,20 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void updateDetails() {
+        //if input is detected, trim and update fields respectively
         if (!et_uname.getText().toString().isEmpty())
             uName = et_uname.getText().toString().trim();
 
         if (!et_phone.getText().toString().isEmpty())
             phoneNum = et_phone.getText().toString().trim();
 
+        //update database using updated fields
         mbase.child("uname").setValue(uName);
         mbase.child("phone").setValue(phoneNum);
     }
 
     private void switchIntent() {
+        //switch intent to main activity
         Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
         startActivity(intent);
         finish();

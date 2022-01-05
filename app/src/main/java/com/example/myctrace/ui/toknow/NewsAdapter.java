@@ -29,6 +29,7 @@ public class NewsAdapter extends FirebaseRecyclerAdapter<
 
     Context mContext;
 
+    //constructor
     public NewsAdapter(@NonNull FirebaseRecyclerOptions<NewsModel> options)
     {
         super(options);
@@ -37,19 +38,24 @@ public class NewsAdapter extends FirebaseRecyclerAdapter<
     @Override
     protected void onBindViewHolder(@NonNull NewsViewholder holder, int position, @NonNull NewsModel model)
     {
+        //set title
         holder.tvTitle.setText(model.getTitle());
 
+        //set onclick listener to open in browser
         holder.cvUrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //open respective URL in browser
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(model.getUrl()));
                 mContext.startActivity(browserIntent);
             }
         });
 
+        //set image cover using picasso library with image url
         Picasso.get().load(model.getImgUrl()).into(holder.imgCover);
     }
 
+    //create view for news "card"
     @NonNull
     @Override
     public NewsViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
@@ -69,6 +75,7 @@ public class NewsAdapter extends FirebaseRecyclerAdapter<
         {
             super(itemView);
 
+            //bind elements for news "card"
             tvTitle = itemView.findViewById(R.id.tv_title);
             cvUrl = itemView.findViewById(R.id.cv_url);
             imgCover = itemView.findViewById(R.id.img_cover);

@@ -54,39 +54,32 @@ public class ProfileFragment extends Fragment {
 
     //private ProfileViewModel profileViewModel;
     private FragmentProfileBinding binding;
-
-    //Firebase ref
+    //Firebase refs
     DatabaseReference mbase, mbase_state;
-
-    MaterialCardView cvRisk, cvVac, cvState;
-    ImageView btn_edit;
-    TextView btn_showqr;
-    TextView tvUname, tvPhone, tvIc, userIcon;
-    Button logoutButton, changePassButton;
-
-    TextView riskTitle, riskUpdated, riskDate;
-    ImageView riskIcon;
-
-    TextView vacTitle, vacUpdated, vacDate;
-    ImageView vacIcon;
-
-    TextView stateTitle, stateUpdated, stateRisk;
-    ImageView stateIcon;
 
     Bitmap qrBitmap;
     String uname, phone, icNum;
     String vacDosage, vacDose1Time, vacDose2Time, vacFacility, vacManufacturer;
+
+    //initializing layout elements
+    MaterialCardView cvRisk, cvVac, cvState;
+    ImageView btn_edit, riskIcon, stateIcon, vacIcon;
+    Button logoutButton, changePassButton;
+    TextView btn_showqr, tvUname, tvPhone, tvIc, userIcon,
+                riskTitle, riskUpdated, riskDate,
+                vacTitle, vacUpdated, vacDate,
+                stateTitle, stateUpdated, stateRisk;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        //setting firebase reference
+        //setting firebase reference to "user"
         mbase = FirebaseDatabase.getInstance()
                 .getReference("user")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-
+        //firebase reference to "states"
         mbase_state = FirebaseDatabase.getInstance().getReference("states");
 
         //binding layout components
@@ -96,34 +89,41 @@ public class ProfileFragment extends Fragment {
         setUserDetails();
         checkRisk();
         checkVac();
-        //checkStateStatus();
 
+        //logout button onclick listener
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //signout
                 FirebaseAuth.getInstance().signOut();
+                //switch intent
                 Intent intent = new Intent(getContext(), Login.class);
                 startActivity(intent);
                 getActivity().finish();
             }
         });
 
+        //risk card onclick listener
         cvRisk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //switch intent
                 Intent i = new Intent(getActivity(), RiskAssessmentActivity.class);
                 startActivity(i);
             }
         });
 
+        //edit profile button onclick listener
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //switch intent
                 Intent i = new Intent(getActivity(), EditProfileActivity.class);
                 startActivity(i);
             }
         });
 
+        //vaccine card onclick listener
         cvVac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,7 +137,6 @@ public class ProfileFragment extends Fragment {
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
                 // show the popup window
-                // which view you pass in doesn't matter, it is only used for the window token
                 popupWindow.showAtLocation(root, Gravity.BOTTOM, 0, 0);
 
                 //bind elements of the popup view
@@ -209,6 +208,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        //show qr button onclick listener
         btn_showqr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -230,10 +230,11 @@ public class ProfileFragment extends Fragment {
                 TextView tv_id = popupView.findViewById(R.id.tv_id);
                 ImageView img_qr = popupView.findViewById(R.id.img_qr);
 
+                //generate QR by parsing in icNum
+                generateQR(icNum);
                 //Set the fields accordingly
                 tv_username.setText(uname);
                 tv_id.setText(icNum);
-                generateQR(icNum);
                 img_qr.setImageBitmap(qrBitmap);
 
                 View container;
@@ -269,9 +270,11 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        //edit password button onclick listener
         changePassButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //switch intent
                 Intent intent = new Intent(getContext(), EditPasswordActivity.class);
                 startActivity(intent);
                 getActivity().finish();
@@ -287,24 +290,28 @@ public class ProfileFragment extends Fragment {
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) { return; }
 
+                //check if username exist
                 if (task.getResult().child("uname").exists()) {
                     uname = String.valueOf((task.getResult().child("uname").getValue()));
                 } else {
                     uname = "User";
                 }
 
+                //check if phone number exist
                 if (task.getResult().child("phone").exists()) {
                     phone = String.valueOf((task.getResult().child("phone").getValue()));
                 } else {
                     phone = "0";
                 }
 
+                //check if ic number exist
                 if (task.getResult().child("icNumber").exists()) {
                     icNum = String.valueOf((task.getResult().child("icNumber").getValue()));
                 } else {
                     icNum = "0";
                 }
 
+                //check if current state exist
                 if (task.getResult().child("currState").exists()) {
                     String currState = String.valueOf((task.getResult().child("currState").getValue()));
                     checkStateStatus(currState);
@@ -313,6 +320,7 @@ public class ProfileFragment extends Fragment {
                     checkStateStatus(currState);
                 }
 
+                //set textviews respectively
                 tvUname.setText(uname);
                 userIcon.setText(Character.toString(uname.charAt(0)));
 
@@ -330,31 +338,36 @@ public class ProfileFragment extends Fragment {
     }
 
     private void checkRisk() {
+        //database listener
         mbase.child("riskInfo").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if(!task.isSuccessful()) { return; }
 
-                String riskStatus;
+                String riskStatus, dateTime;
+
+                //check if risk status exist
                 if(task.getResult().child("riskStatus").exists()) {
                     riskStatus = String.valueOf(task.getResult().child("riskStatus").getValue());
                 } else {
                     riskStatus = "No Data";
                 }
 
-                String dateTime;
+                //check if risk status date exist
                 if(task.getResult().child("riskStatus").exists()) {
                     dateTime = String.valueOf(task.getResult().child("dateTime").getValue());
                 } else {
                     dateTime = "0";
                 }
 
+                //convert from epoch time to readable format
                 Long dateTimeLong = Long.valueOf(dateTime);
                 Date date = new Date(dateTimeLong*1000);
                 DateFormat format = new SimpleDateFormat("dd MMMM yyyy");
                 format.setTimeZone(TimeZone.getTimeZone("Asia/Kuala_Lumpur"));
                 String formatted = format.format(date);
 
+                //set respective fields accordingly
                 riskTitle.setText(riskStatus + " Risk");
                 setRiskState(riskStatus);
 
@@ -363,12 +376,12 @@ public class ProfileFragment extends Fragment {
                 } else {
                     riskDate.setText(formatted);
                 }
-
             }
         });
     }
 
     private void checkVac() {
+        //database listener
         mbase.child("vacInfo").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -380,31 +393,37 @@ public class ProfileFragment extends Fragment {
                 String d2time = "0";
                 String dateTime = "0";
 
+                //check if vaccine facility information exist
                 if (task.getResult().child("facility").exists())
                     vacFacility = String.valueOf(task.getResult().child("facility").getValue());
                 else
                     vacFacility = "No Data";
 
+                //check if vaccine manufacturer exist
                 if (task.getResult().child("manufacturer").exists())
                     vacManufacturer = String.valueOf(task.getResult().child("manufacturer").getValue());
                 else
                     vacManufacturer = "No Data";
 
+                //check if first dose data exist
                 if (task.getResult().child("firstDose").exists()) {
                     vacDosage = "First Dose";
                     d1time = String.valueOf(task.getResult().child("firstDose").getValue());
                     dateTime = d1time;
                 }
 
+                //check if second dose data exist
                 if (task.getResult().child("secondDose").exists()) {
                     vacDosage = "Fully Vaccinated";
                     d2time = String.valueOf(task.getResult().child("secondDose").getValue());
                     dateTime = d2time;
                 }
 
+                //convert epoch time to readable time format
                 vacDose1Time = formatDate(d1time);
                 vacDose2Time = formatDate(d2time);
 
+                //set respective fieelds accordingly
                 vacTitle.setText(vacDosage);
                 setVacStatus(vacDosage);
 
@@ -417,6 +436,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private String formatDate(String dateTime) {
+        //takes in epoch time and return formatted, readable date format
         Long dateTimeLong = Long.valueOf(dateTime);
         Date date = new Date(dateTimeLong*1000);
         DateFormat format = new SimpleDateFormat("dd MMMM yyyy");
@@ -426,6 +446,8 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setRiskState(String status) {
+        //if risk status is high, set respective fields orange
+        //else set all respective fields blue
         if (status.equals("High"))
         {
             cvRisk.setCardBackgroundColor(getResources().getColor(R.color.orange_secondary));
@@ -443,6 +465,8 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setVacStatus(String dosage) {
+        //if vaccine status is fully vaccinated, set all respective fields green
+        //else, set all respective fields orange
         if (dosage.equals("Fully Vaccinated"))
         {
             cvVac.setCardBackgroundColor(getResources().getColor(R.color.green_secondary));
@@ -460,6 +484,8 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setStateStatus(String risk) {
+        //if state risk is high, set respective fields orange
+        //else set respective fields blue
         if (risk.equals("High"))
         {
             cvState.setCardBackgroundColor(getResources().getColor(R.color.orange_secondary));
@@ -477,16 +503,19 @@ public class ProfileFragment extends Fragment {
     }
 
     private void checkStateStatus(String state) {
+        //database listener
         mbase_state.child(state).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if(!task.isSuccessful())
                     return;
 
+                //check if state risk exist
                 String riskstat = "No Data";
                 if (task.getResult().exists())
                     riskstat = String.valueOf(task.getResult().getValue());
 
+                //set fields accordingly
                 stateTitle.setText(state);
                 stateRisk.setText(riskstat);
                 setStateStatus(riskstat);
@@ -495,6 +524,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void bindElements() {
+        //buttons or clickable elements
         cvRisk = binding.cvRisk;
         cvVac = binding.cvVac;
         cvState = binding.cvState;
@@ -503,21 +533,25 @@ public class ProfileFragment extends Fragment {
         logoutButton = binding.logoutButton;
         changePassButton = binding.btnChangePassword;
 
+        //user information elements
         tvUname = binding.tvUname;
         tvPhone = binding.tvPhone;
         tvIc = binding.tvIc;
         userIcon = binding.iconProfile;
 
+        //risk status elements
         riskTitle = binding.riskTitle;
         riskUpdated = binding.riskUpdated;
         riskDate = binding.riskDate;
         riskIcon = binding.riskIcon;
 
+        //vaccine status elements
         vacTitle = binding.vacTitle;
         vacUpdated = binding.vacUpdated;
         vacDate = binding.vacDate;
         vacIcon = binding.vacIcon;
 
+        //state risk elements
         stateTitle = binding.stateTitle;
         stateUpdated = binding.stateUpdated;
         stateRisk = binding.stateRisk;
@@ -526,8 +560,10 @@ public class ProfileFragment extends Fragment {
 
     private void generateQR(String str) {
         //generate QR code based on given string
+        //library used is QRG encoder
         QRGEncoder encoder = new QRGEncoder(str, null, QRGContents.Type.TEXT, 100);
         try {
+            //the function returns a bitmap
             qrBitmap = encoder.encodeAsBitmap();
         } catch (WriterException e) {
             Log.e("Encoder", e.toString());
