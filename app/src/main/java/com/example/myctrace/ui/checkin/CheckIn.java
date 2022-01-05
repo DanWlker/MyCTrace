@@ -29,7 +29,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myctrace.R;
-import com.example.myctrace.ui.QRScanner;
 import com.example.myctrace.ui.checkinhistory.CheckInHistoryFragment;
 import com.example.myctrace.uireusablecomponents.checkInLocation.CheckInLocationAdapter;
 import com.example.myctrace.uireusablecomponents.checkInLocation.CheckInLocationModal;
